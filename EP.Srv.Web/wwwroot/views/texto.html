@@ -1,0 +1,97 @@
+﻿<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Texto</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="principal.instutucional">Inicio</a>
+            </li>
+            <li>
+                <a>Texto</a>
+            </li>
+            <li class="active">
+                <strong>Cadastro</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="textoCtrl" dw-loading="load" dw-loading-options="{text: 'Carregando...'}">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title bg-success">
+                    <h5><strong>Filtro</strong></h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <form name="filtroForm" id="filtroForm">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <input type="text" ng-model="obj.filtroTextoBreve.Texto" placeholder="Chave" name="Texto" id="Texto" class="form-control">
+                            </div>
+                            <div class="col-lg-1">
+                                <button class="btn btn-sm btn-warning btn-rounded" type="button" ng-click="limparFiltro()"><i class="fa fa-trash"></i> Limpar</button>
+                            </div>
+                            <div class="col-lg-1">
+                                <button class="btn btn-sm btn-primary btn-rounded" type="button" ng-click="filtrar()"><i class="fa fa-search"></i> Filtrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <button class="btn btn-sm btn-outline btn-success btn-rounded" type="button" ng-click="incluir()"><i class="fa fa-plus"></i> Novo</button>
+                <div class="ibox-title bg-success">
+                    <h5>Texto - <strong>Cadastro</strong></h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Descricao</th>
+                                    <th>Creditavel?</th>
+                                    <th>Ativo</th>
+                                    <th>Criado Em</th>
+                                    <th>Atualizado Em</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="texto in textos">
+                                    <td>{{ texto.id }}</td>
+                                    <td>{{ texto.descricao }}</td>
+
+                                    <td ng-class="texto.creditavel ? 'bg-primary' : 'bg-danger'">
+                                        {{texto.creditavel ? 'Creditavel' : 'Nao Creditavel'}}
+                                    </td>
+
+                                    <td>
+                                        <i ng-show="texto.ativo" class="fa fa-check text-navy"></i>
+                                        <i ng-show="!texto.ativo" class="fa fa-times text-danger"></i>
+                                    </td>
+                                    <td>{{ texto.criadoEm | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    <td>{{ texto.atualizadoEm | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline btn-primary btn-rounded" type="button" ng-click="editar(texto)"><i class="fa fa-edit"></i> Alterar</button>
+                                        <button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" ng-show="!texto.ativo" ng-click="ativarDesativar(texto)"><i class="fa fa-trash"></i> Ativar</button>
+                                        <button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" ng-show="texto.ativo" ng-click="ativarDesativar(texto)"><i class="fa fa-trash"></i> Desativar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        Mostrando {{(currentPage * numPerPage) - 9 }} até {{currentPage * numPerPage}} de {{totalRecords}} registros
+                        <ul uib-pagination total-items="totalRecords" ng-change="pageChanged()" ng-model="currentPage" max-size="maxSize" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" boundary-link-numbers="true" style="float:right"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,224 @@
+﻿<!--
+*
+* INSPINIA - Responsive Admin Theme
+* Version 2.7.1
+*
+-->
+
+<!DOCTYPE html>
+<html ng-app="gpca">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+    <link rel="shortcut icon" href="img/Grupo Performance Consultoria & Assessoria - fundo transparente 01.png" n>
+
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font awesome -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Main Inspinia CSS files -->
+    <link href="css/animate.css" rel="stylesheet">
+    <link id="loadBefore" href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert.css" />
+    <link href="css/plugins/angular-multiselect/isteven-multi-select.css" rel="stylesheet" />
+    <link href="css/plugins/ivh-treeview/ivh-treeview.css" rel="stylesheet">
+    <link href="css/plugins/ivh-treeview/ivh-treeview-theme-basic.css" rel="stylesheet">
+    <link href="css/plugins/spin/angular-loading.css" rel="stylesheet">
+
+    <style>
+        .cookieConsentContainer {
+            z-index: 999;
+            width: 350px;
+            min-height: 20px;
+            box-sizing: border-box;
+            padding: 30px 30px 30px 30px;
+            background: #232323;
+            overflow: hidden;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none
+        }
+
+            .cookieConsentContainer .cookieTitle a {
+                font-family: OpenSans,arial,sans-serif;
+                color: #fff;
+                font-size: 22px;
+                line-height: 20px;
+                display: block
+            }
+
+            .cookieConsentContainer .cookieDesc p {
+                margin: 0;
+                padding: 0;
+                font-family: OpenSans,arial,sans-serif;
+                color: #fff;
+                font-size: 13px;
+                line-height: 20px;
+                display: block;
+                margin-top: 10px
+            }
+
+            .cookieConsentContainer .cookieDesc a {
+                font-family: OpenSans,arial,sans-serif;
+                color: #fff;
+                text-decoration: underline
+            }
+
+            .cookieConsentContainer .cookieButton a {
+                display: inline-block;
+                font-family: OpenSans,arial,sans-serif;
+                color: #fff;
+                font-size: 14px;
+                font-weight: 700;
+                margin-top: 14px;
+                background: #000;
+                box-sizing: border-box;
+                padding: 15px 24px;
+                text-align: center;
+                transition: background .3s
+            }
+
+                .cookieConsentContainer .cookieButton a:hover {
+                    cursor: pointer;
+                    background: #3e9b67
+                }
+
+        @media (max-width:980px) {
+            .cookieConsentContainer {
+                bottom: 0 !important;
+                left: 0 !important;
+                width: 100% !important
+            }
+        }
+    </style>
+
+</head>
+
+<!-- ControllerAs syntax -->
+<!-- Main controller with serveral data used in Inspinia theme on diferent view -->
+<body ng-controller="MainCtrl as main" class="{{$state.current.data.specialClass}} mini-navbar" landing-scrollspy id="page-top">
+
+    <!-- Main view  -->
+    <div ui-view></div>
+
+    <!-- Configure cookies LGPD -->
+    <script>
+        //var purecookieTitle = "Udo de cookies",
+        //    purecookieDesc = "Para você navegar neste website, usaremos cookies para melhorar e personalizar sua experiência.",
+        //    purecookieLink = '<a href="https://www.cssscript.com/privacy-policy/" target="_blank">Quer saber mais?</a>',
+        //    purecookieButton = "Sim, aceitar cookies";
+
+        //function pureFadeIn(e, o) {
+        //    var i = document.getElementById(e);
+        //    i.style.opacity = 0, i.style.display = o || "block", function e() {
+        //        var o = parseFloat(i.style.opacity);
+        //        (o += .02) > 1 || (i.style.opacity = o, requestAnimationFrame(e))
+        //    }()
+        //}
+        //function pureFadeOut(e) {
+        //    var o = document.getElementById(e);
+        //    o.style.opacity = 1, function e() {
+        //        (o.style.opacity -= .02) < 0 ? o.style.display = "none" : requestAnimationFrame(e)
+        //    }()
+        //}
+        //function setCookie(e, o, i) {
+        //    var t = "";
+        //    if (i) {
+        //        var n = new Date;
+        //        n.setTime(n.getTime() + 24 * i * 60 * 60 * 1e3), t = "; expires=" + n.toUTCString()
+        //    }
+        //    document.cookie = e + "=" + (o || "") + t + "; path=/"
+        //}
+        //function getCookie(e) {
+        //    for (var o = e + "=", i = document.cookie.split(";"), t = 0; t < i.length; t++) {
+        //        for (var n = i[t]; " " == n.charAt(0);)
+        //            n = n.substring(1, n.length);
+        //        if (0 == n.indexOf(o))
+        //            return n.substring(o.length, n.length)
+        //    } return null
+        //}
+        //function eraseCookie(e) {
+        //    document.cookie = e + "=; Max-Age=-99999999;"
+        //}
+        //function cookieConsent() {
+        //    getCookie("purecookieDismiss") || (document.body.innerHTML += '<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>' + purecookieTitle + '</a></div><div class="cookieDesc"><p>' + purecookieDesc + " " + purecookieLink + '</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">' + purecookieButton + "</a></div></div>", pureFadeIn("cookieConsentContainer"))
+        //}
+        //function purecookieDismiss() {
+        //    setCookie("purecookieDismiss", "1", 7), pureFadeOut("cookieConsentContainer")
+        //}
+        //window.onload = function () {
+        //    cookieConsent()
+        //};
+    </script>
+
+
+    <!-- jQuery and Bootstrap -->
+    <script src="js/jquery/jquery-3.1.1.min.js"></script>
+    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/jquery/jquery.dataTables.min.js"></script>
+
+    <!-- MetsiMenu -->
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peace JS -->
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+
+    <!-- Main Angular scripts-->
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/angular/angular-ui-utils.min.js"></script>
+    <script src="js/angular/angular-sanitize.js"></script>
+    <script src="js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="js/angular-translate/angular-translate.min.js"></script>
+    <script src="js/ui-router/angular-ui-router.min.js"></script>
+    <script src="js/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+    <script src="js/plugins/angular-idle/angular-idle.js"></script>
+    <script src="js/plugins/angular-input-mask/angular-input-masks-standalone.js"></script>
+    <script src="js/angular/i18n/angular-locale_pt-br.js"></script>
+    <script src="js/plugins/angular-multiselect/isteven-multi-select.js"></script>
+    <script src="js/plugins/lodash.min.js"></script>
+    <script src="js/angular/ngStorage.js"></script>
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="js/plugins/sweetalert/angular-sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.1/lottie_svg.js"></script>
+    <script src="js/plugins/ivh-treeview/ivh-treeview.js"></script>
+    <script src="js/plugins/spin/spin.min.js"></script>
+    <script src="js/plugins/spin/angular-loading.min.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+
+    <!--
+     You need to include this script on any page that has a Google Map.
+     When using Google Maps on your own site you MUST signup for your own API key at:
+     https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+     After your sign up replace the key in the URL below..
+    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>
+
+    <!-- Anglar App Script -->
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/controllers.js"></script>
+
+
+</body>
+</html>

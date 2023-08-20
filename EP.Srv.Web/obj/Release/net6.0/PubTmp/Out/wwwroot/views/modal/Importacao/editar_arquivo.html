@@ -1,0 +1,20 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Liberação de arquivo</h4>
+        <small class="font-bold">Tela exclusivamente para liberação de arquivo.</small>
+    </div>
+    <form role="form" name="fatorForm">
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Mês da competência</label>
+                <input type="datetime" class="form-control" placeholder="Mês da conferencia" ng-model="obj.MesCompetencia" uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar" is-open="popup1.opened" datepicker-options="dateOptions" ng-click="open1()">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="cancel()">Fechar</button>
+            <button type="button" class="btn btn-primary" ng-show="value != 1" ng-click="Alterar()">alterar</button>
+            <button type="button" class="btn btn-primary" ng-show="value == 1" ng-click="AlterarTodos()">alterar</button>
+        </div>
+    </form>
+</div>

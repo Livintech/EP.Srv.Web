@@ -1,0 +1,44 @@
+﻿<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Relatório de duplicidade</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="principal.instutucional">Inicio</a>
+            </li>
+            <li>
+                <a>Relatórios</a>
+            </li>
+            <li class="active">
+                <strong>Duplicidade</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row" ng-controller="RelDuplicidadeCtrl">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title bg-success">
+                    <h5>Relatório - <strong>Duplicidade</strong></h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <form name="filtroForm" id="filtroForm">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <input type="datetime" class="form-control" placeholder="Mês da conferencia" ng-model="data" uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar" is-open="popup1.opened" datepicker-options="dateOptions" ng-click="open1()">
+                            </div>
+                            <div class="col-lg-1">
+                                <button class="btn btn-sm btn-success btn-rounded" type="button" ng-click="download()"><i class="fa fa-send-o"></i> Gerar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

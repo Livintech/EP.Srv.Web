@@ -1,0 +1,63 @@
+﻿<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Consolidação Relatório de Gastos</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="principal.instutucional">Inicio</a>
+            </li>
+            <li>
+                <a>Relatórios</a>
+            </li>
+            <li class="active">
+                <strong>Consolidado</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="row" ng-controller="ConsolidadoCtrl" dw-loading="load" dw-loading-options="{text: 'Gerando...'}">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <br />
+
+            <!--<div class="ibox-title bg-success">-->
+            <div class="row" style="width: 900px;">
+                <div class="col-md-2">
+                    <!--<input type="text" class="form-control input-sm" ng-model="dtProcessamento" placeholder="Data de processamento" style="width: 160px;" />-->
+                    <select class="form-control" ng-model="dtProcessamento" ng-options="p.mesCompetencia as p.mesCompetencia for p in lstPeriodo"
+                            ng-change="seletedDate();" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();"
+                            style="float: right !important;">
+                        <option value="" selected>Selecione..</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-sm btn-outline btn-success btn-rounded" type="button" ng-click="btnGerar('01/'+dtProcessamento, 0, 'gerar');"><i class="fa fa-download"></i> Gerar relatório</button>
+                </div>
+            </div>
+            <!--</div>-->
+            <br />
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Mês/Ano processado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="file in GetFiles">
+                                <td>{{ file.mesCompetencia }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" style="margin-left: 60px;" ng-click="btnGerar('01/'+file.mesCompetencia, 1, '')"><i class="fa fa-recycle"></i> Reprocessar</button>
+                                    <button class="btn btn-sm btn-outline btn-success btn-rounded" type="button" style="margin-left: 15px;" ng-click="btnGerar('01/'+file.mesCompetencia, 0, '')"><i class="fa fa-download"></i> Baixar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

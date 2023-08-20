@@ -1,0 +1,113 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Dashboard</h2>
+        <ol class="breadcrumb">
+            <li>
+                Inicio
+            </li>
+            <li class="active">
+                <strong>Dashboard</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row" ng-controller="DashboardCtrl" dw-loading="load" dw-loading-options="{text: 'Gerando...'}">
+    <div class="col-lg-12">
+        <div style="padding-top: 5px;">
+            <ul class="nav nav-tabs">
+                <li ng-class="{'active': tab == 1}" style="border-radius: 5px !important;"><a href="" ng-click="chosenTab(1);">Anual</a></li>
+                <li ng-class="{'active': tab == 2}" style="border-radius: 5px !important;"><a href="" ng-click="chosenTab(2);">Mensal</a></li>
+                <li ng-show="tab == 1" style="float: right !important;">
+                    <select class="form-control" ng-model="selectedPeriodoAno" ng-options="p.ano as p.ano for p in lstPeriodoAnual" ng-change="seletedYear();">
+                    </select>
+                </li>
+                <li ng-show="tab == 2" style="float: right !important;">
+                    <div style="width: 100%; z-index: 20000; position: absolute;">
+                        <select class="form-control" ng-model="selectedPeriodo" ng-options="p.mesCompetencia as p.mesCompetencia for p in lstPeriodo"
+                                ng-change="seletedDate();" onfocus="this.size=10;" onblur="this.size=1;" onchange="this.size=1; this.blur();" 
+                                style="float: right !important; width: auto;">
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div ng-show="tab == 1">
+            <div class="row" style="display: flex !important; padding-top: 10px; margin: auto;">
+                <div class="col-md-6 card-dash dash-custom" style="max-width: 100%;">
+                    <canvas id="tables" class="chart chart-line ng-isolate-scope"
+                            chart-data="data2" chart-options="options2" chart-series="chSeries2"
+                            chart-labels="labels2" chart-colors="colors2"
+                            width="483" height="201"
+                            style="display: block; width: 483px; height: auto;">
+                    </canvas>
+                </div>
+                <div class="col-md-6 card-dash dash-custom">
+                    <canvas id="tables" class="chart chart-line ng-isolate-scope"
+                            chart-data="data3" chart-options="options3" chart-series="chSeries3"
+                            chart-labels="labels3" chart-colors="colors3"
+                            width="483" height="201"
+                            style="display: block; width: 483px; height: auto;">
+                    </canvas>
+                </div>
+            </div>
+            <div class="row" style="margin: auto;">
+                <div class="card-dash card-text" style="padding: 20px !important;">
+                    <div class="">
+                        <h2>{{volumeTotal | currency: 'R$'}}</h2>
+                        <h4>Valor Total do Cr&eacute;dito</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="tab == 2" style="height: auto !important; padding-bottom: 80px;">
+            <div class="row" style="display: flex !important; padding-top: 10px; margin: auto;">
+                <div class="col-md-4 card-dash dash-custom">
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-options="options4"
+                            chart-data="data4" chart-labels="labels4" width="600" height="360">
+                    </canvas>
+                </div>
+                <div class="col-md-4 card-dash dash-custom">
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-options="options5"
+                            chart-data="data5" chart-labels="labels5" width="600" height="360">
+                    </canvas>
+                </div>
+                <div class="col-md-4 card-dash dash-custom">
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-options="options6"
+                            chart-data="data6" chart-labels="labels6" width="600" height="330">
+                    </canvas>
+                </div>
+
+            </div>
+            <div class="row" style="display: flex !important; padding-top: 1px; margin: auto; height: auto !important;">
+                <div class="col-md-4 card-dash dash-custom">
+                    <canvas id="doughnut-8" class="chart chart-doughnut" chart-options="options8"
+                            chart-data="data8" chart-labels="labels8" width="600" height="400">
+                    </canvas>
+                </div>
+                <div class="col-md-4 card-dash dash-custom">
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-options="options9"
+                            chart-data="data9" chart-labels="labels9" width="600" height="400">
+                    </canvas>
+                </div>
+                <div class="col-md-4 card-dash dash-custom">
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-options="options7"
+                            chart-data="data7" chart-labels="labels7" width="600" height="360">
+                    </canvas>
+                </div>
+
+            </div>
+            <div class="row" style="display: flex !important; padding-top: 1px; margin:auto; height: auto !important;">
+                <div class="col-md-12 card-dash card-text">
+                    <div class="row" style="">
+                        <h4 style="margin-bottom: 0;">Valor Credit&aacute;vel</h4>
+                        <h2 style="margin-top: 0;">{{volumeTotalMensalCreditavel | currency: 'R$'}}</h2>
+                    </div>
+                    <div class="row">
+                        <h4 style="margin-bottom: 0;">Valor N&atilde;o Credit&aacute;vel</h4>
+                        <h2 style="margin-top: 0;">{{volumeTotalMensalNaoCreditavel | currency: 'R$'}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

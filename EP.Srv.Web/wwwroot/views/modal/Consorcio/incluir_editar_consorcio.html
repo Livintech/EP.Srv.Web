@@ -1,0 +1,20 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Inclusao/Alteracao de Consórcio</h4>
+        <small class="font-bold">Tela exclusivamente para inclusao/alteracao de Consórcio.</small>
+    </div>
+    <form role="form" name="fatorForm">
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Descrição</label>
+                <input type="text" id="numeracao" name="numeracao" class="form-control" ng-model="obj.Descricao">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="cancel()">Fechar</button>
+            <button type="button" class="btn btn-primary" ng-show="value == null" ng-click="Incluir()">Incluir</button>
+            <button type="button" class="btn btn-primary" ng-show="value != null" ng-click="Alterar()">alterar</button>
+        </div>
+    </form>
+</div>

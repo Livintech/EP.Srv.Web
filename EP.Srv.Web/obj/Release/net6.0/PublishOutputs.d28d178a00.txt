@@ -1,0 +1,7 @@
+C:\Dev\Pessoal\Gpca.Admin.V1\Gpca.Admin.V1\obj\Release\net6.0\PubTmp\Out\Gpca.Admin.V1.exe
+C:\Dev\Pessoal\Gpca.Admin.V1\Gpca.Admin.V1\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Dev\Pessoal\Gpca.Admin.V1\Gpca.Admin.V1\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Dev\Pessoal\Gpca.Admin.V1\Gpca.Admin.V1\obj\Release\net6.0\PubTmp\Out\Gpca.Admin.V1.dll
+C:\Dev\Pessoal\Gpca.Admin.V1\Gpca.Admin.V1\obj\Release\net6.0\PubTmp\Out\Gpca.Admin.V1.deps.json
+C:\Dev\Pessoal\Gpca.Admin.V1\Gpca.Admin.V1\obj\Release\net6.0\PubTmp\Out\Gpca.Admin.V1.runtimeconfig.json
+C:\Dev\Pessoal\Gpca.Admin.V1\Gpca.Admin.V1\obj\Release\net6.0\PubTmp\Out\Gpca.Admin.V1.pdb

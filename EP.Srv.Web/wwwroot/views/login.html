@@ -1,0 +1,31 @@
+<toaster-container></toaster-container>
+<div class="middle-box text-center loginscreen  animated fadeInDown" ng-controller="LoginCtrl" style="padding-top:200px;" dw-loading="load" dw-loading-options="{text: 'Acessando...'}">
+    <div class="divLogin">
+        <div style="margin-bottom:30px;">
+            <img src="../img/Grupo Performance Consultoria & Assessoria - fundo branco.png" style="width:250px;"/>
+        </div>
+        <form class="m-t" role="form" autocomplete="off" name="loginForm">
+            <div class="form-group">
+                <select class="form-control" name="tipo" id="tipo" ng-model="tipo" ng-options="t.tipo as t.nome for t in tipos">
+                    <option value="">Selecione o tipo pessoa</option>
+                </select>
+            </div>
+            <div class="form-group" ng-show="tipo == 'PF'">
+                <input type="text" class="form-control" autocomplete="off" ng-change="verificaCpfCnpj();" placeholder="CPF" name="CpfCnpj" ng-model="user.CpfCnpj" ui-br-cpf-mask>
+            </div>
+            <div class="form-group" ng-show="tipo == 'PJ'">
+                <input type="text" class="form-control" autocomplete="off" ng-change="verificaCpfCnpj();" placeholder="CNPJ" name="CpfCnpj" ng-model="user.CpfCnpj" ui-br-cnpj-mask>
+            </div>
+            <div class="form-group" ng-show="tipo == 'PF' || tipo == 'PJ'">
+                <input type="password" class="form-control" autocomplete="off" placeholder="Senha" ng-model="user.Senha">
+            </div>
+            <div class="form-group" ng-show="isCodeAccess">
+                <input type="text" class="form-control" placeholder="Codigo de acesso de com digitos" ng-model="user.codigoAcesso">
+            </div>
+            <button type="button" class="btn btn-success block full-width m-b" ng-click="autenticar(user);" ng-disabled="user.Senha == ''">Login</button>
+
+            <a ui-sref="forgot_password"><small>Esqueceu a senha?</small></a>
+            <a ui-sref="signin_up"><small>Cadastre-se</small></a>
+        </form>
+    </div>
+</div>

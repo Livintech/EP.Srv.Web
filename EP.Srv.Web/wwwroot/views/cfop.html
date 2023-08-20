@@ -1,0 +1,72 @@
+﻿<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>CFOP</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="principal.instutucional">Inicio</a>
+            </li>
+            <li>
+                <a>CFOP</a>
+            </li>
+            <li class="active">
+                <strong>Cadastro</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row" ng-controller="cfopCtrl">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <button class="btn btn-sm btn-outline btn-success btn-rounded" type="button" ng-click="novo()"><i class="fa fa-plus"></i> Novo</button>
+                <div class="ibox-title bg-success">
+                    <h5>CFOP - <strong>Cadastro</strong></h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Numeração</th>
+                                    <th>Descrição</th>
+                                    <th>Entrada/Saida</th>
+                                    <th>Crédito</th>
+                                    <th>Criado Em</th>
+                                    <th>Atualizado Em</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in cfops">
+                                    <td>{{ data.id }}</td>
+                                    <td>{{ data.numeracao }}</td>
+                                    <td>{{ data.descricao }}</td>
+
+                                    <td>{{ data.entradaSaida == 'E' ? 'Entrada' : 'Saida' }}</td>
+                                    <td ng-class="{'bg-primary': data.credito == 'S', 'bg-danger' : data.credito == 'N', 'bg-warning' : data.credito == 'P'}">{{ data.credito == 'S' ? "Sim" : (data.credito == 'N' ? "Não": "Possivel") }}</td>
+
+                                    <td>{{ data.criadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                                    <td>{{ data.atualizadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                                    <td>
+                                        <i ng-show="data.ativo == true" class="fa fa-check text-navy"></i>
+                                        <i ng-show="data.ativo == false" class="fa fa-times text-danger"></i>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline btn-primary btn-rounded" type="button" ng-click="editar(data)"><i class="fa fa-edit"></i> Alterar</button>
+                                        <button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" ng-show="data.ativo == false" ng-click="ativarDesativar(data)"><i class="fa fa-trash"></i> Ativar</button>
+                                        <button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" ng-show="data.ativo == true" ng-click="ativarDesativar(data)"><i class="fa fa-trash"></i> Desativar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

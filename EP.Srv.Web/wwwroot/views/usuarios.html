@@ -1,0 +1,59 @@
+﻿<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Usuários</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="principal.instutucional">Inicio</a>
+            </li>
+            <li>
+                <a>Administração</a>
+            </li>
+            <li class="active">
+                <strong>Usuários</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="UsuariosCtrl" dw-loading="load" dw-loading-options="{text: 'Carregando...'}">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <!--<button class="btn btn-sm btn-outline btn-success btn-rounded" type="button" ng-click="addUsuario()"><i class="fa fa-plus"></i> Novo Usuario</button>-->
+                <div class="ibox-title bg-success">
+                    <h5><strong>Usuários - Manutenção</strong></h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Documento</th>
+                                    <th>E-Mail</th>
+                                    <th>Criado Em</th>
+                                    <th>Atualizado Em</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="usu in GetUsuarios">
+                                    <td>{{usu.nome}}</td>
+                                    <td>{{usu.cpfCnpj}}</td>
+                                    <td>{{usu.email}}</td>
+                                    <td>{{usu.criadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                                    <td>{{usu.atualizadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                                    <td ng-class="{'bg-primary': usu.status == 'Ativo', 'bg-danger' : usu.status == 'Inativo'}">{{ usu.status }}</td>
+                                    <td><button class="btn btn-sm btn-outline btn-primary btn-rounded" type="button" ng-click="editar(usu)"><i class="fa fa-edit"></i> Alterar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

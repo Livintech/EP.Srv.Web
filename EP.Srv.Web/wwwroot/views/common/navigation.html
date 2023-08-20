@@ -1,0 +1,55 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+
+                <div class="profile-element" uib-dropdown>
+                    <img alt="image" style="width: 160px;" src="../../img/Grupo Performance Consultoria & Assessoria - fundo transparente 01.png" />
+                </div>
+                <div class="logo-element">
+                    <img alt="image" src="../../img/Grupo Performance Consultoria & Assessoria - fundo transparente 01.png" style="width:35px;" />
+                </div>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="inicio.blank"><i class="fa fa-area-chart"></i> <span class="nav-label">{{ 'Dashboards' | translate }}</span> </a>
+            </li>
+
+            <li ng-class="{active: $state.includes('tabelas')}">
+                <a href="#"><i class="fa fa-list-alt"></i> <span class="nav-label">{{ 'Cadastros' | translate }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('tabelas')}">
+                    <li ui-sref-active="active"><a ui-sref="tabelas.consorcio">{{ 'Consórcios' | translate }}</a></li>
+                    <li ui-sref-active="active"><a ui-sref="tabelas.JV">JVs</a></li>
+                    <li ui-sref-active="active"><a ui-sref="tabelas.CFOP">CFOP</a></li>
+                    <li ui-sref-active="active"><a ui-sref="tabelas.NCM">NCM</a></li>
+                    <li ui-sref-active="active"><a ui-sref="tabelas.metaobj">Meta Objeto</a></li>
+                    <li ui-sref-active="active"><a ui-sref="tabelas.texto">Texto Breve</a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('relatorios')}">
+                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('relatorios')}">
+                    <li ui-sref-active="active"><a ui-sref="relatorios.consolidado">Consolidado</a></li>
+                    <li ui-sref-active="active"><a ui-sref="relatorios.resumo">Resumo</a></li>
+                    <li ui-sref-active="active"><a ui-sref="relatorios.importacao">Importação</a></li>
+                    <li ui-sref-active="active"><a ui-sref="relatorios.duplicidade">Duplicidade</a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('correcao')}">
+                <a href="#"><i class="fa fa-pencil"></i> <span class="nav-label">Correção Manual</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('correcao')}">
+                    <li ui-sref-active="active"><a ui-sref="correcao.manualH01">H01</a></li>
+                    <li ui-sref-active="active"><a ui-sref="correcao.manualH02">H02</a></li>
+                    <li ui-sref-active="active"><a ui-sref="correcao.manualH03">H03</a></li>
+                    <li ui-sref-active="active"><a ui-sref="correcao.manualH04">H04</a></li>
+                    <li ui-sref-active="active"><a ui-sref="correcao.manualH05">H05</a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('administracao')}">
+                <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Administração</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('administracao')}">
+                    <li ui-sref-active="active"><a ui-sref="administracao.usuarios">Usuários</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
