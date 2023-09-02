@@ -97,7 +97,7 @@ h5 {
 
 .navbar-default {
     background-color: transparent;
-    border-color: #2f4050;
+    border-color: #012245;
 }
 
 .navbar-top-links li {
@@ -217,8 +217,13 @@ h5 {
 
 .nav-header {
     padding: 33px 25px;
-    background-color: #2f4050;
-    background-image: url("patterns/header-profile.png");
+    /*background-color: #1e2442;*/
+    /*background-image: url("patterns/header-profile.png");*/
+    background-color: #1e2442;
+    opacity: 0.8;
+    background-image: radial-gradient(#163aef 0.5px, transparent 0.5px), radial-gradient(#163aef 0.5px, #1e2442 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0,10px 10px;
 }
 
 .pace-done .nav-header {
@@ -230,8 +235,8 @@ ul.nav-second-level {
 }
 
 .nav > li.active {
-    border-left: 4px solid #1c84c6;
-    background: #293846;
+    border-left: 4px solid #869177;
+    background: #223c54;
 }
 
 .nav.nav-second-level > li.active {
@@ -345,7 +350,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
     position: absolute;
     left: 70px;
     top: 0;
-    background-color: #2f4050;
+    background-color: #012245;
     padding: 10px 10px 10px 10px;
     font-size: 12px;
 }
@@ -651,7 +656,7 @@ body.canvas-menu.mini-navbar .navbar-default .nav li .profile-element a span {
 
 body.canvas-menu nav.navbar-static-side {
     z-index: 2001;
-    background: #2f4050;
+    background: #012245;
     height: 100%;
     position: fixed;
     display: none;
@@ -818,7 +823,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 
 .btn-success.btn-outline {
-    color: #1c84c6;
+    color: #012245;
 }
 
 .btn-info.btn-outline {
@@ -888,8 +893,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
         }
 
 .btn-success {
-    background-color: #1c84c6;
-    border-color: #1c84c6;
+    background-color: #012245;
+    border-color: #012245;
     color: #FFFFFF;
 }
 
@@ -928,8 +933,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
         fieldset[disabled] .btn-success:focus,
         fieldset[disabled] .btn-success:active,
         fieldset[disabled] .btn-success.active {
-            background-color: #1f90d8;
-            border-color: #1f90d8;
+            background-color: #012245;
+            border-color: #012245;
         }
 
 .btn-info {
@@ -1346,7 +1351,7 @@ button.dim:active:before {
 
 .label-success,
 .badge-success {
-    background-color: #1c84c6;
+    background-color: #012245;
     color: #FFFFFF;
 }
 
@@ -1545,23 +1550,23 @@ button.dim:active:before {
 }
 /* TOOLTIPS */
 .tooltip-inner {
-    background-color: #2F4050;
+    background-color: #012245;
 }
 
 .tooltip.top .tooltip-arrow {
-    border-top-color: #2F4050;
+    border-top-color: #012245;
 }
 
 .tooltip.right .tooltip-arrow {
-    border-right-color: #2F4050;
+    border-right-color: #012245;
 }
 
 .tooltip.bottom .tooltip-arrow {
-    border-bottom-color: #2F4050;
+    border-bottom-color: #012245;
 }
 
 .tooltip.left .tooltip-arrow {
-    border-left-color: #2F4050;
+    border-left-color: #012245;
 }
 /* EASY PIE CHART*/
 .easypiechart {
@@ -2273,11 +2278,11 @@ div.dt-button-info {
 
 .form-control,
 .single-line {
-    background-color: #FFFFFF;
+    background-color: #fde9ea;
     background-image: none;
-    border: 1px solid #e5e6e7;
-    border-radius: 1px;
-    color: inherit;
+    border: none;
+    border-bottom: 1px solid;
+    color: #012245;
     display: block;
     padding: 6px 12px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
@@ -3027,7 +3032,7 @@ label.error {
 }
 
 .inspinia-notify.alert-success {
-    border-left: 6px solid #1c84c6;
+    border-left: 6px solid #012245;
 }
 
 .inspinia-notify.alert-danger {
@@ -3916,8 +3921,8 @@ body.tour-open .animated {
 
             .stream .stream-badge i.bg-success {
                 color: #ffffff;
-                background-color: #1c84c6;
-                border-color: #1c84c6;
+                background-color: #012245;
+                border-color: #012245;
             }
 
             .stream .stream-badge i.bg-primary {
@@ -4076,7 +4081,7 @@ body.tour-open .animated {
             padding: 12px 10px;
             margin: 0;
             border-radius: 0;
-            background: #2f4050;
+            background: #012245;
             color: #fff;
             text-align: center;
             border-right: 1px solid #334556;
@@ -4166,7 +4171,7 @@ body.tour-open .animated {
 
 body {
     font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #2f4050;
+    background-color: #012245;
     font-size: 13px;
     color: #676a6c;
     overflow-x: hidden;
@@ -4191,7 +4196,7 @@ body.boxed-layout {
 }
 
     body.boxed-layout #wrapper {
-        background-color: #2f4050;
+        background-color: #012245;
         max-width: 1200px;
         margin: 0 auto;
         -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
@@ -4829,6 +4834,7 @@ table.table-mail tr td {
 /* BACKGROUNDS */
 .gray-bg,
 .bg-muted {
+    /*background-color: #fde9ea80;*/
     background-color: #f3f3f4;
 }
 
@@ -4838,7 +4844,7 @@ table.table-mail tr td {
 
 .blue-bg,
 .bg-success {
-    background-color: #1c84c6;
+    background-color: #869177;
     color: #ffffff;
 }
 
@@ -4880,12 +4886,12 @@ table.table-mail tr td {
     }
 
 .panel-success {
-    border-color: #1c84c6;
+    border-color: #012245;
 }
 
     .panel-success > .panel-heading {
-        background-color: #1c84c6;
-        border-color: #1c84c6;
+        background-color: #012245;
+        border-color: #012245;
         color: #ffffff;
     }
 
@@ -4944,7 +4950,7 @@ table.table-mail tr td {
 }
 
 .progress-bar-success {
-    background-color: #1c84c6;
+    background-color: #012245;
 }
 
 .progress-bar-info {
@@ -4981,7 +4987,7 @@ table.table-mail tr td {
 }
 
 .text-success {
-    color: #1c84c6;
+    color: #012245;
 }
 
 .text-info {
@@ -5955,7 +5961,7 @@ ul.notes li {
     }
 
     .category-list li a .text-primary {
-        color: #1c84c6;
+        color: #012245;
     }
 
     .category-list li a .text-info {
@@ -6507,7 +6513,7 @@ dd.project-people {
 .article h1 {
     font-size: 48px;
     font-weight: 700;
-    color: #2F4050;
+    color: #012245;
 }
 
 .article p {
@@ -6587,7 +6593,7 @@ table.issue-tracker tbody tr td {
         }
 
         .agile-list li.info-element {
-            border-left: 3px solid #1c84c6;
+            border-left: 3px solid #012245;
         }
 
         .agile-list li.success-element {
@@ -6959,7 +6965,7 @@ body.body-small .vote-icon {
 }
 
 .small-chat-box .heading {
-    background: #2f4050;
+    background: #012245;
     padding: 8px 15px;
     font-weight: bold;
     color: #fff;
@@ -10370,6 +10376,7 @@ input[type="radio"] {
     }
 
 .divLogin {
+    background-color: #fde9ea !important;
     border: 1px solid #d1d1d1c4;
     padding: 15px !important;
     box-shadow: 20px 20px 20px 1px rgb(0 0 0 / 10%);
@@ -10399,6 +10406,23 @@ input[type="radio"] {
     background-color: #e3e4f2 !important;
     font-size: 14px !important;
     font-weight: 700 !important;
+}
+
+.form-control-modal {
+    background-color: #f8fafb !important;
+}
+
+.mb-2 {
+    padding-bottom: 2rem;
+}
+
+.form-field-invalid {
+    border-bottom-color: red;
+}
+
+.label-error {
+    font-weight: 500;
+    color: red;
 }
 
 
