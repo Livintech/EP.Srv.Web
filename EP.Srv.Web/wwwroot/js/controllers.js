@@ -47,7 +47,6 @@ angular.module('EP')
         var stopId = 0;
         stopId = $interval(function () {
             if ($localStorage.user != undefined) {
-
                 ValidaSessionUsuario();
             } else {
                 $interval.cancel(stopId);
@@ -58,7 +57,7 @@ angular.module('EP')
         // -------------------------------------------------------------------------------
 
     })
-    .controller('DashboardCtrl', function ($scope, DashboardService, RelatoriosService, $loading, $q, SweetAlert) {
+    .controller('DashboardCtrl', function ($scope, $loading, $q, SweetAlert) {
 
         $loading.start('load');
 
@@ -73,10 +72,16 @@ angular.module('EP')
         $loading.finish('load');
 
     })
-    .controller('LoginCtrl', function ($scope, toaster, AuthService, $loading, $localStorage) {
-        $onInit = function () {
+    .controller('LoginCtrl', function ($scope, toaster, AuthService, ClienteService, $loading, $localStorage, $timeout) {
+        $scope.OnInit = function () {
             $scope.tipo = "PF";
             $localStorage.$reset();
+        };
+
+        $scope.RedirecionaInicio = function () {
+            $timeout(function () {
+                window.location = "#/inicio/blank";
+            }, 2000);
         };
 
         $scope.user = {
@@ -135,7 +140,92 @@ angular.module('EP')
             }
             else {
                 $scope.loginForm.$removeControl(this);
-                AuthService.logar(user);                
+
+                AuthService.logar(user).then(function (response) {
+                    if (response.data.authenticated) {
+                        $loading.finish('load');
+
+                        toaster.pop({
+                            type: 'success',
+                            title: 'Sucesso',
+                            body: response.data.message,
+                            showCloseButton: true,
+                            timeout: 5000
+                        });
+
+                        $localStorage.$reset();
+                        $localStorage.user = response.data;
+
+                        if (response.data.perfil != 'Master') {
+
+                            ClienteService.ObterEmpresas().then(function (resp) {
+                                if (resp.success) {
+
+                                    angular.forEach(resp.data.$values, function (value, index) {
+                                        if (value.codigo == response.data.codigoEmpresa.substr(0, 5)) {
+                                            $localStorage.user.filtroEmpresa = value;
+                                        };
+                                    });
+
+                                    $scope.RedirecionaInicio();
+
+                                } else {
+                                    toaster.pop({
+                                        type: 'error',
+                                        title: 'Error',
+                                        body: "Erro ao obter os dados da empresa: " + response.data.codigoEmpresa,
+                                        showCloseButton: true,
+                                        timeout: 5000
+                                    });
+
+                                    console.log("Mensagem erro: " + response.data.message);
+                                    console.log("Erro ao obter os dados da empresa: " + response.data.codigoEmpresa);
+                                }
+                            })
+                        } else {
+                            $scope.RedirecionaInicio();
+                        }
+
+
+                    } else {
+                        $localStorage.user = response.data;
+                        $loading.finish('load');
+
+                        toaster.pop({
+                            type: 'error',
+                            title: 'Error',
+                            body: response.data.message,
+                            showCloseButton: true,
+                            timeout: 5000
+                        });
+
+                        $timeout(function () {
+                            $loading.finish('load');
+                        }, 2000);
+                    }
+                }, function (error) {
+                    $loading.finish('load');
+
+                    if (error.data != null) {
+                        angular.forEach(error.data, function (value, index) {
+                            toaster.pop({
+                                type: 'error',
+                                title: value.propertyName,
+                                body: value.errorMessage,
+                                showCloseButton: true,
+                                timeout: 5000
+                            });
+                        });
+                    } else {
+                        toaster.pop({
+                            type: 'error',
+                            title: 'Erro ao logar',
+                            body: 'Ocorreu um erro inesperado no login.',
+                            showCloseButton: true,
+                            timeout: 5000
+                        });
+                    }
+                });
             }
         }
     })
@@ -165,17 +255,30 @@ angular.module('EP')
             AuthService.cadastrar(user);
         }
     })
-    .controller('topNavCtrl', function ($scope, $localStorage, $http, $uibModal, SweetAlert) {
+    .controller('topNavCtrl', function ($scope, $rootScope, $localStorage, $uibModal, SweetAlert, ClienteService) {
 
-        //if ($localStorage.user == undefined) {
-        //    window.location = "#/login";
-        //}
+        var filtroEmpresa = $localStorage.user.filtroEmpresa;
+        var perfil = $localStorage.user.perfil;
 
-        $scope.user = $localStorage.user.userName.split('-')[1];
+        $scope.user = {
+            nome: $localStorage.user.userName.split('-')[1] + " - " + perfil,
+            perfil: perfil
+        };
+        $scope.labelFiltro = (filtroEmpresa == '' || filtroEmpresa == undefined) ? 'Filtro Empresa' : ("00000" + filtroEmpresa.id).slice(-5) + ' - ' + filtroEmpresa.nomeRazao;
+        $scope.empresas = [];
+
+        ClienteService.ObterEmpresas().then(function (response) {
+            angular.forEach(response.data, function (values, index) {
+                if (index == "$values") {
+                    $scope.empresas = values;
+                }
+            });
+        });
 
 
         $scope.logout = function () {
             $localStorage.$reset();
+            $rootScope.user = undefined;
         }
 
         $scope.changepassword = function () {
@@ -198,6 +301,12 @@ angular.module('EP')
                 })
             });
         };
+
+        $scope.selectEntity = function (data) {
+            $localStorage.user.filtroEmpresa = data;
+            $scope.labelFiltro = ("00000" + data.id).slice(-5) + ' - ' + data.nomeRazao;
+            window.location.reload();
+        }
     })
     .controller('ResumoCtrl', function ($scope, DTOptionsBuilder, $loading, SweetAlert, $q, RelatoriosService) {
 
@@ -288,8 +397,8 @@ angular.module('EP')
                 })
             .withButtons([
                 { extend: 'copy' },
-                { extend: 'csv', title: 'Resumo_Creditos_' + $scope.dtProcessamento },
-                { extend: 'excel', title: 'Resumo_Creditos_' + $scope.dtProcessamento },
+                { extend: 'csv', title: 'Resumo_' + $scope.dtProcessamento },
+                { extend: 'excel', title: 'Resumo_' + $scope.dtProcessamento },
 
                 {
                     extend: 'print',
@@ -304,20 +413,30 @@ angular.module('EP')
                 }
             ]);
     })
-    .controller('UsuariosCtrl', function ($scope, $uibModal, SweetAlert, DTOptionsBuilder, UsuarioService, $q, $http, $loading, $timeout) {
+    .controller('UsuariosCtrl', function ($scope, $uibModal, SweetAlert, DTOptionsBuilder, UsuarioService, $localStorage, $loading, $timeout) {
 
         $loading.start('load');
-        var listUsers = UsuarioService.GetUsers();
+        $scope.erroSenha = false;
+        $scope.codigoEmpresaEnabled = true;
+        $scope.objUser = {
+            codigoEmpresa: '',
+            cpfCnpj: '',
+            nome: '',
+            perfil: '',
+            email: '',
+            senha: '',
+            senhaConfirmacao: ''
+        }
 
-        $q.all([listUsers]).then(function (response) {
-            $scope.GetUsuarios = response[0].data;
+        UsuarioService.GetUsers().then(function (response) {
+            $scope.GetUsuarios = response.data;
             $loading.finish('load');
         });
-
 
         $scope.editar = function (data) {
             $uibModal.open({
                 scope: $scope,
+                backdrop: false,
                 templateUrl: 'views/modal/Usuario/editar_usuarios.html',
                 controller: function ($scope, $uibModalInstance, usuarioSelected, $timeout) {
 
@@ -372,23 +491,74 @@ angular.module('EP')
             });
         }
 
-        $scope.addUsuario = function (obj) {
+        $scope.addUsuario = function (tipo) {
             $uibModal.open({
                 scope: $scope,
-                templateUrl: 'views/modal/Usuario/editar_usuarios.html',
-                controller: function ($scope, $uibModalInstance) {
+                backdrop: false,
+                templateUrl: 'views/modal/Usuario/incluir_usuarios.html',
+                controller: function ($scope, $uibModalInstance, $loading, SweetAlert, UsuarioService) {
 
-                    $scope.usuario = obj;
-                    $scope.alterar = function () {
+                    var tipoEmpresa = $localStorage.user.filtroEmpresa?.tipo;
+                    var codigoEmpresa = $localStorage.user.filtroEmpresa?.codigo;
 
-                        UsuarioService.CreateUser(obj).then(function () {
-                            $uibModalInstance.dismiss('dimiss');
-                            SweetAlert.swal({
-                                title: "Sucesso!",
-                                text: "Usuário alterado com sucesso!",
-                                type: "success"
+                    if (tipoEmpresa == '' || tipoEmpresa == undefined) {
+                        SweetAlert.swal({
+                            title: "Erro!",
+                            text: "Empresa não encontrada. Selecione uma empresa válida",
+                            type: "error"
+                        });
+
+                        return;
+                    }
+
+                    $scope.objUser.codigoEmpresa = codigoEmpresa + "." + tipoEmpresa;
+
+                    $scope.Add = function () {
+
+                        if ($scope.objUser.senha != $scope.objUser.senhaConfirmacao) {
+                            $scope.erroSenha = true;
+                            return;
+                        } else {
+                            $scope.erroSenha = false;
+                        }
+
+                        $loading.start('load');
+
+                        UsuarioService.cadastrar($scope.objUser).then(function (respData) {
+                            $loading.finish('load');
+
+                            if (respData.data.success) {
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: "Usuário cadastrado com sucesso",
+                                    type: "success"
+                                }, function (isConfirm) {
+                                    if (isConfirm) {
+                                        $uibModalInstance.dismiss('dimiss');
+                                        window.location.reload();
+                                    } else {
+                                        $uibModalInstance.dismiss('dimiss');
+                                        window.location.reload();
+                                    }
+                                });
+                            } else {
+                                SweetAlert.swal({
+                                    title: "Erro!",
+                                    text: "Erro cadastrar usuário. \n" + respData.data.message + "",
+                                    type: "error"
+                                });
+                            }
+                        }, function (error) {
+                            angular.forEach(error.data, function (value, index) {
+                                SweetAlert.swal({
+                                    title: "Erro!",
+                                    text: "Erro cadastrar usuário. \n" + value.errorMessage + "",
+                                    type: "error"
+                                });
                             });
-                        })
+
+                        });
+                        //})
 
                     }
 
@@ -396,12 +566,7 @@ angular.module('EP')
                         $uibModalInstance.dismiss('cancel');
                     };
                 },
-                windowClass: "animated fadeIn",
-                resolve: {
-                    usuarioSelected: function () {
-                        return obj;
-                    }
-                }
+                windowClass: "animated fadeIn"
             });
         }
 
@@ -410,7 +575,7 @@ angular.module('EP')
             .withButtons([
                 { extend: 'copy' },
                 { extend: 'csv' },
-                { extend: 'excel', title: 'Resumo_Creditos_' + $scope.dtProcessamento },
+                { extend: 'excel', title: 'Usuarios_' + Date.now },
 
                 {
                     extend: 'print',
@@ -426,13 +591,12 @@ angular.module('EP')
             ]);
 
     })
-    .controller('ClienteCtrl', function ($scope, SweetAlert) {
+    .controller('ClienteCtrl', function ($scope, SweetAlert, ClienteService, $uibModal, $localStorage, $loading) {
 
         $scope.obj = {
-            codigo: '',
+            codigoEmpresa: '',
             cpf: '',
             cnpj: '',
-            nome: '',
             email: '',
             telefone: '',
             endereco: '',
@@ -442,12 +606,14 @@ angular.module('EP')
             uf: '',
             numero: '',
             complemento: '',
-            dataInicio: '',
+            dataSituacao: '',
             tipo: ''
         }
         $scope.errorForm = "";
         $scope.erroCpf = false;
         $scope.erroCnpj = false;
+        $scope.erroEmail = false;
+        $scope.perfil = $localStorage.user.perfil;
 
         $scope.dateOptions = {
             formatYear: 'yy',
@@ -501,6 +667,7 @@ angular.module('EP')
         $scope.change = function () {
             $scope.erroCnpj = false;
             $scope.erroCpf = false;
+            $scope.erroEmail = false;
             $scope.errorForm = $scope.clienteForm?.$error;
 
             angular.forEach($scope.errorForm, function (value, index) {
@@ -509,14 +676,21 @@ angular.module('EP')
                 }
                 if (index == 'cpf') {
                     $scope.erroCpf = true;
+                }
+                if (index == 'email') {
+                    $scope.erroEmail = true;
                 }
             });
         };
 
         $scope.Incluir = function () {
+            $loading.start('load');
+
             $scope.erroCnpj = false;
             $scope.erroCpf = false;
+            $scope.erroSenha = false;
             $scope.errorForm = $scope.clienteForm?.$error;
+            $scope.codigoEmpresaEnabled = false;
 
             angular.forEach($scope.errorForm, function (value, index) {
                 if (index == 'cnpj') {
@@ -525,9 +699,14 @@ angular.module('EP')
                 if (index == 'cpf') {
                     $scope.erroCpf = true;
                 }
+                if (index == 'email') {
+                    $scope.erroEmail = true;
+                }
             });
 
-            if ($scope.erroCnpj || $scope.erroCpf) {
+            if ($scope.erroCnpj || $scope.erroCpf || $scope.erroEmail) {
+                $loading.finish('load');
+
                 SweetAlert.swal({
                     title: "Atenção!",
                     text: "Existem campos com erro de validação",
@@ -535,6 +714,8 @@ angular.module('EP')
                 });
             } else if (($scope.obj.cpf == undefined || $scope.obj.cpf == '') &&
                 ($scope.obj.cnpj == undefined || $scope.obj.cnpj == '')) {
+                $loading.finish('load');
+
                 SweetAlert.swal({
                     title: "Atenção!",
                     text: "Para finalizar o cadastro é necessário preencher o CPF ou o CNPJ",
@@ -542,6 +723,753 @@ angular.module('EP')
                 });
             } else {
                 console.log(JSON.stringify($scope.obj));
+                ClienteService.CadastrarCliente($scope.obj)
+                    .then(function (response) {
+                        $loading.finish('load');
+                        var data = response;
+
+                        if (data.success) {
+                            if (data.data.tipo == "EMP") {
+                                $scope.objUser = {};
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: "Cadastro finalizado com sucesso. Agora você precisa criar um usuário associado a esta empresa. \nVamos lá?",
+                                    type: "success"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            // abrir modal de cadstro de usuário
+                                            $uibModal.open({
+                                                scope: $scope,
+                                                backdrop: false,
+                                                templateUrl: 'views/modal/usuario/incluir_usuarios.html',
+                                                controller: function ($scope, $uibModalInstance, $loading, SweetAlert, UsuarioService) {
+
+                                                    $scope.objUser.codigoEmpresa = '';
+                                                    $scope.objUser.codigoEmpresa = ("00000" + data.data.id).slice(-5);
+
+                                                    $scope.Add = function () {
+
+                                                        if ($scope.objUser.senha != $scope.objUser.senhaConfirmacao) {
+                                                            $scope.erroSenha = true;
+                                                            return;
+                                                        }
+
+                                                        $loading.start('load');
+                                                        //$scope.objUser.codigoEmpresa += "." + data.data.tipo;
+
+                                                        UsuarioService.cadastrar($scope.objUser).then(function (respData) {
+                                                            $loading.finish('load');
+
+                                                            if (respData.data.success) {
+                                                                SweetAlert.swal({
+                                                                    title: "Sucesso!",
+                                                                    text: "Usuário cadastrado com sucesso",
+                                                                    type: "success"
+                                                                }, function (isConfirm) {
+                                                                    if (isConfirm) {
+                                                                        $uibModalInstance.dismiss('dimiss');
+                                                                        window.location.reload();
+                                                                    } else {
+                                                                        $uibModalInstance.dismiss('dimiss');
+                                                                        window.location.reload();
+                                                                    }
+                                                                });
+                                                            } else {
+                                                                SweetAlert.swal({
+                                                                    title: "Erro!",
+                                                                    text: "Erro cadastrar usuário. \n" + respData.data.message + "",
+                                                                    type: "error"
+                                                                });
+                                                            }
+                                                        }, function (error) {
+                                                            angular.forEach(error.data, function (value, index) {
+                                                                SweetAlert.swal({
+                                                                    title: "Erro!",
+                                                                    text: "Erro cadastrar usuário. \n" + value.errorMessage + "",
+                                                                    type: "error"
+                                                                });
+                                                            });
+
+                                                        });
+                                                    }
+
+                                                    $scope.cancel = function () {
+                                                        $uibModalInstance.dismiss('cancel');
+                                                    };
+                                                },
+                                                windowClass: "animated fadeIn",
+                                                resolve: {
+                                                    consorcioSelected: function () {
+                                                        return data;
+                                                    }
+                                                }
+                                            }).result.then(function (result) {
+                                                /*$scope.GetAll();*/
+                                            });
+                                        }
+                                    });
+
+                            } else {
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: "Cadastro finalizado com sucesso.",
+                                    type: "success"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.location.reload();
+                                        }
+                                    });
+                            }
+                        } else {
+                            weetAlert.swal({
+                                title: "Erro!",
+                                text: "Erro ao solicitar sua equisição, entre em contato com o suporte para mais informações.",
+                                type: "error"
+                            });
+                        }
+                    }, function (error) {
+                        $loading.finish('load');
+
+                        console.log("Erro: " + error);
+                        SweetAlert.swal({
+                            title: "Erro!",
+                            text: "Erro ao solicitar sua equisição, entre em contato com o suporte para mais informações.",
+                            type: "error"
+                        });
+                    });
             }
         };
+
+        $scope.change = function () {
+            if ($scope.obj.tipo != "EMP") {
+                var codigoEmp = $localStorage.user.filtroEmpresa.id
+                $scope.obj.codigoEmpresa = ("00000" + codigoEmp).slice(-5);
+            } else {
+                $scope.obj.codigoEmpresa = "";
+            }
+        };
+    })
+    .controller('ListaClientesCtrl', function ($scope, ClienteService, $localStorage, $loading, DTOptionsBuilder) {
+
+        $loading.start('load');
+        var obj = {
+            codigoEmpresa: $localStorage.user.filtroEmpresa == undefined ? '' : ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5)
+        };
+
+        ClienteService.ObterCLientes(obj).then(function (response) {
+            var objResponse = response;
+            if (objResponse.success) {
+                $scope.lstClientes = objResponse.data.$values;
+                angular.forEach($scope.lstClientes, function (values, index) {
+                    if (values.tipo == 'EMP') {
+                        values.tipo = 'Empresa';
+                    } else if (values.tipo == 'CLI') {
+                        values.tipo = 'Cliente';
+                    } else if (values.tipo == 'FOR') {
+                        values.tipo = 'Fornecedor';
+                    } else if (values.tipo == 'PRES') {
+                        values.tipo = 'Prestador de serviços';
+                    } else {
+                        values.tipo = 'Funcionário';
+                    }
+
+                    var strNome = values.nomeRazao.substring(0, 30);
+                    values.nomeRazao = strNome.length >= 20 ? strNome + '..' : strNome;
+                    values.telefone = formatarTel(values.telefone);
+                    values.cnpj = formatarCNPJ(values.cnpj);
+                    values.cpf = formatarCPF(values.cpf);
+                });
+            }
+            $loading.finish('load');
+        });
+
+        function formatarTel(tel) {
+            if (tel) {
+                const value = tel.toString().replace(/\D/g, '');
+
+                let foneFormatado = '';
+
+                if (value.length > 12) {
+                    foneFormatado = value.replace(/(\d{2})?(\d{2})?(\d{5})?(\d{4})/,
+                        '+$1 ($2) $3-$4');
+
+                } else if (value.length > 11) {
+                    foneFormatado = value.replace(/(\d{2})?(\d{2})?(\d{4})?(\d{4})/,
+                        '+$1 ($2) $3-$4');
+
+                } else if (value.length > 10) {
+                    foneFormatado = value.replace(/(\d{2})?(\d{5})?(\d{4})/, '($1) $2-$3');
+
+                } else if (value.length > 9) {
+                    foneFormatado = value.replace(/(\d{2})?(\d{4})?(\d{4})/, '($1) $2-$3');
+
+                } else if (value.length > 5) {
+                    foneFormatado = value.replace(/^(\d{2})?(\d{4})?(\d{0,4})/, '($1) $2-$3');
+
+                } else if (value.length > 1) {
+                    foneFormatado = value.replace(/^(\d{2})?(\d{0,5})/, '($1) $2');
+
+                } else {
+                    if (tel !== '') { foneFormatado = value.replace(/^(\d*)/, '($1'); }
+                }
+
+                return foneFormatado;
+            }
+        };
+
+        function formatarCPF(cpf) {
+
+            var ao_cpf = cpf;
+            var cpfValido = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}))$/;
+            if (cpfValido.test(ao_cpf) == false) {
+
+                ao_cpf = ao_cpf.replace(/\D/g, ""); //Remove tudo o que não é dígito
+
+                if (ao_cpf.length == 11) {
+                    ao_cpf = ao_cpf.replace(/(\d{3})(\d)/, "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+                    ao_cpf = ao_cpf.replace(/(\d{3})(\d)/, "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+                    //de novo (para o segundo bloco de números)
+                    ao_cpf = ao_cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); //Coloca um hífen entre o terceiro e o quarto dígitos
+                }
+            }
+
+            return ao_cpf;
+        }
+
+        function formatarCNPJ(cnpj) {
+            return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+        }
+
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'ExampleFile' },
+                { extend: 'pdf', title: 'ExampleFile' },
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
+    })
+    .controller('ProdutosCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, ProdutosService) {
+        $scope.OnInit = function () {
+            $scope.getProdutosServicos = [];
+            $scope.obj = {
+                codigo: '0010',
+                descricao: 'TEste',
+                criadoEm: '12/09/2023',
+                atualizadoEm: '',
+                status: 'Inativo'
+            };
+
+            //ProdutosService.GetProdutosServicao()
+            //    .then(function (response) {
+            //        var data = response;
+            //        if (data.success) {
+            //            $loading.finish('load');
+            //$scope.getProdutosServicos = data.data;
+            $scope.getProdutosServicos.push($scope.obj);
+            //    }
+            //}, function (error) {
+            //    $loading.finish('load');
+            //    console.log(error);
+            //});
+        };
+
+        $scope.limpar = function () {
+            $scope.OnInit();
+        };
+
+        $scope.gravar = function () {
+            $loading.start('load');
+
+            ProdutosService.GravarDadosProdutos($scope.obj)
+                .then(function (response) {
+                    var data = response;
+                    if (data.success) {
+                        $loading.finish('load');
+
+                        SweetAlert.swal({
+                            title: "Sucesso!",
+                            text: "Cadastro finalizado com sucesso.",
+                            type: "success"
+                        });
+
+                        window.location.reload();
+                    } else {
+                        $loading.finish('load');
+
+                        SweetAlert.swal({
+                            title: "Erro!",
+                            text: "Não foi possível finalizar o cadastro. Entre em contato com o administrador do sistema.",
+                            type: "error"
+                        });
+                    }
+                }, function (error) {
+                    $loading.finish('load');
+                    console.log(error);
+
+                    SweetAlert.swal({
+                        title: "Erro!",
+                        text: "Erro ao solicitar sua requisição, entre em contato com o suporte para mais informações.",
+                        type: "error"
+                    });
+                });
+        };
+
+        $scope.OnInit();
+
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'Usuarios_' + Date.now },
+
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
+    })
+    .controller('BancoCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, BancoService, $localStorage, $uibModal) {
+
+        $loading.start('load');
+
+        $scope.OnInit = function () {
+            $scope.obj = {
+                codigo: '',
+                instituicao: '',
+                agencia: '',
+                conta: '',
+                saldoInicial: '',
+                dataSaldoInicio: '',
+                empresaId: 0
+            };
+
+            $scope.erroCodigo = false;
+            $scope.erroAgencia = false;
+            $scope.erroConta = false;
+            $scope.erroInstituicao = false;
+            $scope.textoErro = '';
+
+            $scope.filtroEmpresaSelecionado = true;
+            var filtroEmpresa = $localStorage.user.filtroEmpresa;
+
+            if (filtroEmpresa != undefined) {
+                $scope.filtroEmpresaSelecionado = false;
+            } 
+            
+            var newObj = {
+                empresaId: filtroEmpresa == undefined ? '' : filtroEmpresa.id.toString()
+            };
+
+            BancoService.ListarBancos(newObj).then(function (response) {
+                $loading.finish('load');
+                if (response.success) {
+                    $scope.listaBancos = response.data.$values;
+                }
+            });
+        };
+
+        $scope.dateOptions = {
+            formatYear: 'yy',
+            maxDate: new Date(),
+            minDate: new Date(),
+            startingDay: 1
+        };
+
+        $scope.inlineOptions = {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        };
+
+        $scope.format = 'dd/MM/yyyy'
+
+        $scope.toggleMin = function () {
+            $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+            $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+            $scope.dateOptions.currentText = false;
+        };
+
+        $scope.toggleMin();
+
+        $scope.open1 = function () {
+            $scope.popup1.opened = true;
+        };
+
+        $scope.popup1 = {
+            opened: false
+        };
+
+        function getDayClass(data) {
+            var date = data.date,
+                mode = data.mode;
+            if (mode === 'day') {
+                var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+
+                for (var i = 0; i < $scope.events.length; i++) {
+                    var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
+
+                    if (dayToCheck === currentDay) {
+                        return $scope.events[i].status;
+                    }
+                }
+            }
+
+            return '';
+        };
+
+        $scope.limpar = function () {
+            $scope.OnInit();
+        };
+
+        $scope.gravar = function () {
+            $scope.erroCodigo = false;
+            $scope.erroAgencia = false;
+            $scope.erroConta = false;
+            $scope.erroInstituicao = false;
+            $scope.textoErro = '';
+
+            if ($localStorage.user.filtroEmpresa == undefined) {
+                SweetAlert.swal({
+                    title: "Erro!",
+                    text: "Selecione uma empresa válida para continuar com o cadastro.",
+                    type: "error"
+                });
+
+                return;
+            }
+
+            if ($scope.obj.codigo == '' || $scope.obj.codigo == undefined || $scope.obj.codigo == 0) {
+                $scope.erroCodigo = true;
+                $scope.textoErro = '* Código do banco é obrigatório';
+                return;
+            } else if ($scope.obj.instituicao == '' || $scope.obj.instituicao == undefined) {
+                $scope.erroInstituicao = true;
+                $scope.textoErro = '* Campo obrigatório';
+                return;
+            } else if ($scope.obj.agencia == '' || $scope.obj.agencia == undefined) {
+                $scope.erroAgencia = true;
+                $scope.textoErro = '* Campo agência é obrigatório ';
+                return;
+            } else if ($scope.obj.conta == 0 || $scope.obj.conta == undefined) {
+                $scope.erroConta = true;
+                $scope.textoErro = '* Campo conta é obrigatório';
+                return;
+            } else {
+                $scope.erroCodigo = false;
+                $scope.erroAgencia = false;
+                $scope.erroConta = false;
+                $scope.erroInstituicao = false;
+                $scope.textoErro = '';
+            }
+
+            $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
+            $loading.start('load');
+
+            BancoService.GravarDadosBanco($scope.obj)
+                .then(function (response) {
+                    var data = response;
+                    if (data.success) {
+                        $loading.finish('load');
+                        $scope.OnInit();
+                        SweetAlert.swal({
+                            title: "Sucesso!",
+                            text: "Cadastro finalizado com sucesso.",
+                            type: "success"
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    window.location.reload();
+                                }
+                            });
+                    } else {
+                        $loading.finish('load');
+
+                        SweetAlert.swal({
+                            title: "Erro!",
+                            text: "Não foi possível finalizar o cadastro. Entre em contato com o administrador do sistema.",
+                            type: "error"
+                        });
+                    }
+                }, function (error) {
+                    $loading.finish('load');
+                    console.log(error);
+
+                    SweetAlert.swal({
+                        title: "Erro!",
+                        text: "Erro ao solicitar sua requisição, entre em contato com o suporte para mais informações.",
+                        type: "error"
+                    });
+                });
+        };
+
+        $scope.editar = function (banco) {
+            $uibModal.open({
+                scope: $scope,
+                backdrop: false,
+                templateUrl: 'views/modal/Banco/editar_banco.html',
+                controller: function ($scope, $uibModalInstance, bancoSelected) {
+
+                    $scope.objBanco = {};
+                    $scope.objBanco.instituicao = bancoSelected.instituicao;
+                    $scope.objBanco.codigo = bancoSelected.codigo;
+                    $scope.objBanco.saldoInicial = bancoSelected.saldoInicial;
+                    $scope.objBanco.agencia = bancoSelected.agencia;
+                    $scope.objBanco.conta = bancoSelected.conta;
+                    $scope.objBanco.ativo = bancoSelected.ativo;
+                    $scope.objBanco.id = bancoSelected.id;
+
+                    $scope.alterar = function () {
+                        $loading.start('load');
+
+                        BancoService.AtualizarDadosBanco($scope.objBanco).then(function (response) {
+                            $loading.finish('load');
+
+                            if (response.success) {
+
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: response.message,
+                                    type: "success"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            $scope.OnInit();
+                                        }
+                                    });
+                            } else {
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Erro!",
+                                    text: response.message,
+                                    type: "error"
+                                });
+                            }
+                        }, function (error) {
+
+                        });
+                    }
+
+                    $scope.cancel = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+                },
+                windowClass: "animated fadeIn",
+                resolve: {
+                    bancoSelected: function () {
+                        return banco;
+                    }
+                }
+            });
+        }
+
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'Usuarios_' + Date.now },
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
+
+        $scope.OnInit();
+    })
+    .controller('FormaPagamentoCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, FormaPagamentoService, $localStorage, $uibModal) {
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'Usuarios_' + Date.now },
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
+
+        $loading.start('load');
+
+        $scope.OnInit = function () {
+            $scope.obj = {
+                empresaId: '',
+                descricao: '',
+                codigoEmpresa: ''
+            }
+
+            $scope.erroCampo = false;
+            $scope.textoErro = '';
+
+            $scope.filtroEmpresaSelecionado = true;
+
+            if ($localStorage.user.filtroEmpresa != undefined) {
+                $scope.filtroEmpresaSelecionado = false;
+                $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
+                $scope.obj.codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5);
+
+                FormaPagamentoService.ObterListaPagamentos($scope.obj)
+                    .then(function (response) {
+                        $loading.finish('load');
+
+                        var data = response;
+                        if (data.success) {
+                            angular.forEach(data.data, function (value, index) {
+                                if (index == '$values') {
+                                    $scope.listaPagamentos = value;
+                                }
+                            });
+                        }
+                    }, function (error) {
+                        console.log("Erro " + JSON.stringify(error));
+                    });
+            }
+        };
+
+        $scope.limpar = function () {
+            $scope.OnInit();
+        };
+
+        $scope.gravar = function () {
+            $scope.erroCampo = false;
+            $scope.textoErro = '';
+
+            if ($scope.obj.descricao == '') {
+                $scope.erroCampo = true;
+                $scope.textoErro = '* Campo obrigatório';
+                return;
+            } else {
+                $loading.start('load');
+                $scope.erroCampo = false;
+                $scope.textoErro = '';
+
+                FormaPagamentoService.GravarDadosPagamento($scope.obj)
+                    .then(function (response) {
+                        $loading.finish('load');
+
+                        if (response.success) {
+
+                            SweetAlert.swal({
+                                title: "Sucesso!",
+                                text: response.message,
+                                type: "success"
+                            },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $scope.OnInit();
+                                    }
+                                });
+                        } else {
+                            SweetAlert.swal({
+                                title: "Erro!",
+                                text: response.message,
+                                type: "error"
+                            });
+                        }
+                    }, function (error) {
+
+                    });
+            }
+        };
+
+        $scope.editar = function (data) {
+            $uibModal.open({
+                scope: $scope,
+                backdrop: false,
+                templateUrl: 'views/modal/Pagamento/editar_pagamento.html',
+                controller: function ($scope, $uibModalInstance, pagamentoSelected, $timeout) {
+
+                    $scope.objPagamento = {};
+                    $scope.objPagamento.id = pagamentoSelected.id;
+                    $scope.objPagamento.codigoEmpresa = pagamentoSelected.codigoEmpresa;
+                    $scope.objPagamento.empresaId = pagamentoSelected.empresaId.toString();
+                    $scope.objPagamento.descricao = pagamentoSelected.descricao;
+                    $scope.objPagamento.ativo = pagamentoSelected.ativo;
+
+                    $scope.alterar = function () {
+                        $loading.start('load');
+
+                        FormaPagamentoService.AtualizaPagamento($scope.objPagamento).then(function (response) {
+                            $loading.finish('load');
+
+                            if (response.success) {
+
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: response.message,
+                                    type: "success"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            $scope.OnInit();
+                                        }
+                                    });
+                            } else {
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Erro!",
+                                    text: response.message,
+                                    type: "error"
+                                });
+                            }
+                        }, function (error) {
+
+                        });
+                    }
+
+                    $scope.cancel = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+                },
+                windowClass: "animated fadeIn",
+                resolve: {
+                    pagamentoSelected: function () {
+                        return data;
+                    }
+                }
+            });
+        }
+
+        $scope.OnInit();
+    })
+    .controller('ConfigCtrl', function ($scope, $localStorage) {
+        $scope.user = $localStorage?.user;
     });

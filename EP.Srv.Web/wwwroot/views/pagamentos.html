@@ -1,0 +1,98 @@
+﻿<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastro de Formas de Pagamentos</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="inicio.blank">Inicio</a>
+            </li>
+            <li>
+                Cadastros
+            </li>
+            <li>
+                <a ui-sref="cadastrar.geral">Geral</a>
+            </li>
+            <li class="active">
+                <strong>Formas de Pagamento</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="FormaPagamentoCtrl" dw-loading="load" dw-loading-options="{text: 'Cadastrando...'}">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="containner-head">
+                <div class="ibox ibox-bottom">
+                    <br />
+                    <div class="ibox-title bg-success">
+                        <h5><strong>Formulário de Cadastro</strong></h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <br />
+                    <div class="ibox-content">
+                        <form role="form" name="pagamentoForm">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label>Codigo Empresa</label>
+                                    <input type="text" id="codigoEmpresa" name="codigoEmpresa" class="form-control form-control-modal" ng-model="obj.codigoEmpresa" disabled>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Forma de Pagamento</label>
+                                    <input type="text" id="formaPagamento" name="formaPagamento" class="form-control form-control-modal" placeholder="Descrição de pagamento" ng-model="obj.descricao">
+                                    <label class="label-error" ng-show="erroCampo">{{textoErro}}</label>
+                                </div>
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-2">
+                                    <div style="float: right !important; margin-top: 25px;">
+                                        <button type="button" class="btn btn-white" ng-click="limpar()">Limpar</button>
+                                        <button type="button" class="btn btn-primary" ng-click="gravar()" ng-disabled="filtroEmpresaSelecionado">Gravar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="divisor-containner"></div>
+            <br />
+            <div class="containner-body">
+                <div class="ibox ibox-bottom">
+                    <div class="ibox-title bg-success">
+                        <h5><strong>Lista de Formas de Pagamentos</strong></h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Código Empresa</th>
+                                        <th>Forma de Pagamento</th>
+                                        <th>Criado Em</th>
+                                        <th>Atualizado Em</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pgt in listaPagamentos">
+                                        <td>{{ pgt.id }}</td>
+                                        <td>{{ pgt.codigoEmpresa }}</td>
+                                        <td>{{ pgt.descricao }}</td>
+                                        <td>{{ pgt.criadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                                        <td>{{ pgt.atualizadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                                        <td ng-class="{'bg-primary': pgt.ativo, 'bg-danger' : !pgt.ativo}">{{ pgt.ativo ? 'Ativo' : 'Inativo' }}</td>
+                                        <td><button class="btn btn-sm btn-outline btn-primary btn-rounded" style="float: none !important;" type="button" ng-click="editar(pgt)"><i class="fa fa-edit"></i> Alterar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

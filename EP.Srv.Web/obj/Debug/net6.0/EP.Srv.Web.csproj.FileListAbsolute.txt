@@ -6,7 +6,6 @@ C:\Dev\Pessoal\EfeitoPetalo\EP.Srv.Web\EP.Srv.Web\bin\Debug\net6.0\EP.Srv.Web.de
 C:\Dev\Pessoal\EfeitoPetalo\EP.Srv.Web\EP.Srv.Web\bin\Debug\net6.0\EP.Srv.Web.runtimeconfig.json
 C:\Dev\Pessoal\EfeitoPetalo\EP.Srv.Web\EP.Srv.Web\bin\Debug\net6.0\EP.Srv.Web.dll
 C:\Dev\Pessoal\EfeitoPetalo\EP.Srv.Web\EP.Srv.Web\bin\Debug\net6.0\EP.Srv.Web.pdb
-C:\Dev\Pessoal\EfeitoPetalo\EP.Srv.Web\EP.Srv.Web\obj\Debug\net6.0\EP.Srv.Web.csproj.AssemblyReference.cache
 C:\Dev\Pessoal\EfeitoPetalo\EP.Srv.Web\EP.Srv.Web\obj\Debug\net6.0\EP.Srv.Web.GeneratedMSBuildEditorConfig.editorconfig
 C:\Dev\Pessoal\EfeitoPetalo\EP.Srv.Web\EP.Srv.Web\obj\Debug\net6.0\EP.Srv.Web.AssemblyInfoInputs.cache
 C:\Dev\Pessoal\EfeitoPetalo\EP.Srv.Web\EP.Srv.Web\obj\Debug\net6.0\EP.Srv.Web.AssemblyInfo.cs

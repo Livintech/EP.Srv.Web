@@ -1,5 +1,5 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
-    <div class="sidebar-collapse">
+    <div class="sidebar-collapse" ng-controller="ConfigCtrl">
         <ul side-navigation class="nav metismenu" id="side-menu">
             <li class="nav-header">
 
@@ -10,23 +10,23 @@
                     <img alt="image" src="../../img/logo-azul.png" style="width:65px;" />
                 </div>
             </li>
+            <!--{{user.perfil}}-->
             <li ui-sref-active="active">
                 <a ui-sref="inicio.blank"><i class="fa fa-area-chart"></i> <span class="nav-label">{{ 'Dashboards' | translate }}</span> </a>
             </li>
-
             <li ng-class="{active: $state.includes('cadastrar')}">
                 <a href="#"><i class="fa fa-list-alt"></i> <span class="nav-label">{{ 'Cadastros' | translate }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('cadastrar')}">
-                    <li ui-sref-active="active"><a ui-sref="cadastrar.cliente">Cliente</a></li>
+                    <li ui-sref-active="active"><a ui-sref="cadastrar.geral">Geral</a></li>
                 </ul>
             </li>
-            <li ng-class="{active: $state.includes('relatorios')}">
+            <li ng-show="user.perfil == 'Master' || user.perfil == 'Administrador'" ng-class="{active: $state.includes('relatorios')}">
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('relatorios')}">
-                    <li ui-sref-active="active"><a ui-sref="relatorios.consolidado">Consolidado</a></li>
+                    <li ui-sref-active="active"><a ui-sref="relatorios.clientesLista">Clientes</a></li>
                 </ul>
             </li>
-            <li ng-class="{active: $state.includes('administracao')}">
+            <li ng-show="user.perfil == 'Master' || user.perfil == 'Administrador'" ng-class="{active: $state.includes('administracao')}">
                 <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Administração</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('administracao')}">
                     <li ui-sref-active="active"><a ui-sref="administracao.usuarios">Usuários</a></li>

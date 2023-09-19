@@ -649,72 +649,24 @@
       "PackagePath": "staticwebassets\\fonts\\glyphicons-halflings-regular.woff2"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria - fundo branco.jpg",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria - fundo branco.jpg"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria - fundo branco.png",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria - fundo branco.png"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria - fundo transparente 01.png",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria - fundo transparente 01.png"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria - monocromatico 01.png",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria - monocromatico 01.png"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria - monocromatico.png",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria - monocromatico.png"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria.ai",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria.ai"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria.cdr",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria.cdr"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria.jpg",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria.jpg"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo Performance Consultoria & Assessoria.png",
-      "PackagePath": "staticwebassets\\img\\Grupo Performance Consultoria & Assessoria.png"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo-Performance-Consultoria-_-Assessoria.eps",
-      "PackagePath": "staticwebassets\\img\\Grupo-Performance-Consultoria-_-Assessoria.eps"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\Grupo-Performance-Consultoria-_-Assessoria.psd",
-      "PackagePath": "staticwebassets\\img\\Grupo-Performance-Consultoria-_-Assessoria.psd"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\LOGO_SISTEMA.png",
-      "PackagePath": "staticwebassets\\img\\LOGO_SISTEMA.png"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\LOGO_SISTEMA_AZUL.png",
-      "PackagePath": "staticwebassets\\img\\LOGO_SISTEMA_AZUL.png"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\SIMBOLO_SISTEMA.png",
-      "PackagePath": "staticwebassets\\img\\SIMBOLO_SISTEMA.png"
-    },
-    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\error.gif",
       "PackagePath": "staticwebassets\\img\\error.gif"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\facon.png",
-      "PackagePath": "staticwebassets\\img\\facon.png"
-    },
-    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\loading.gif",
       "PackagePath": "staticwebassets\\img\\loading.gif"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\login-2.jpg",
+      "PackagePath": "staticwebassets\\img\\login-2.jpg"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\login.jpg",
+      "PackagePath": "staticwebassets\\img\\login.jpg"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\logo-azul.png",
+      "PackagePath": "staticwebassets\\img\\logo-azul.png"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\img\\success.gif",
@@ -6561,24 +6513,28 @@
       "PackagePath": "staticwebassets\\resources\\sms_frases.json"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\JV.html",
-      "PackagePath": "staticwebassets\\views\\JV.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\NCM.html",
-      "PackagePath": "staticwebassets\\views\\NCM.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\bancos.html",
+      "PackagePath": "staticwebassets\\views\\bancos.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\blank.html",
       "PackagePath": "staticwebassets\\views\\blank.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastro.html",
-      "PackagePath": "staticwebassets\\views\\cadastro.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros.html",
+      "PackagePath": "staticwebassets\\views\\cadastros.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cfop.html",
-      "PackagePath": "staticwebassets\\views\\cfop.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\centroCustos.html",
+      "PackagePath": "staticwebassets\\views\\centroCustos.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cliente.html",
+      "PackagePath": "staticwebassets\\views\\cliente.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\clientesLista.html",
+      "PackagePath": "staticwebassets\\views\\clientesLista.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\common\\content.html",
@@ -6637,92 +6593,44 @@
       "PackagePath": "staticwebassets\\views\\consolidado.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\consorcio.html",
-      "PackagePath": "staticwebassets\\views\\consorcio.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\duplicidade.html",
-      "PackagePath": "staticwebassets\\views\\duplicidade.html"
-    },
-    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\forgot_password.html",
       "PackagePath": "staticwebassets\\views\\forgot_password.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\importacao-bkp.html",
-      "PackagePath": "staticwebassets\\views\\importacao-bkp.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\importacao.html",
-      "PackagePath": "staticwebassets\\views\\importacao.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\login.html",
       "PackagePath": "staticwebassets\\views\\login.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\manualh01.html",
-      "PackagePath": "staticwebassets\\views\\manualh01.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Banco\\editar_banco.html",
+      "PackagePath": "staticwebassets\\views\\modal\\Banco\\editar_banco.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\manualh02.html",
-      "PackagePath": "staticwebassets\\views\\manualh02.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\manualh03.html",
-      "PackagePath": "staticwebassets\\views\\manualh03.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\manualh04.html",
-      "PackagePath": "staticwebassets\\views\\manualh04.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\manualh05.html",
-      "PackagePath": "staticwebassets\\views\\manualh05.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\metaobj.html",
-      "PackagePath": "staticwebassets\\views\\metaobj.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Cfop\\incluir_editar_cfop.html",
-      "PackagePath": "staticwebassets\\views\\modal\\Cfop\\incluir_editar_cfop.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Consorcio\\incluir_editar_consorcio.html",
-      "PackagePath": "staticwebassets\\views\\modal\\Consorcio\\incluir_editar_consorcio.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Consorcio\\incluir_editar_consorcioJV.html",
-      "PackagePath": "staticwebassets\\views\\modal\\Consorcio\\incluir_editar_consorcioJV.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Importacao\\editar_arquivo.html",
-      "PackagePath": "staticwebassets\\views\\modal\\Importacao\\editar_arquivo.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Manual\\editar_manuais.html",
-      "PackagePath": "staticwebassets\\views\\modal\\Manual\\editar_manuais.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Meta\\incluir_editar_metaobj.html",
-      "PackagePath": "staticwebassets\\views\\modal\\Meta\\incluir_editar_metaobj.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\NCM\\incluir_editar_ncm.html",
-      "PackagePath": "staticwebassets\\views\\modal\\NCM\\incluir_editar_ncm.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Texto\\incluir_editar_texto.html",
-      "PackagePath": "staticwebassets\\views\\modal\\Texto\\incluir_editar_texto.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Pagamento\\editar_pagamento.html",
+      "PackagePath": "staticwebassets\\views\\modal\\Pagamento\\editar_pagamento.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Usuario\\editar_usuarios.html",
       "PackagePath": "staticwebassets\\views\\modal\\Usuario\\editar_usuarios.html"
     },
     {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Usuario\\incluir_usuarios.html",
+      "PackagePath": "staticwebassets\\views\\modal\\Usuario\\incluir_usuarios.html"
+    },
+    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\modal_base.html",
       "PackagePath": "staticwebassets\\views\\modal\\modal_base.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\pagamentos.html",
+      "PackagePath": "staticwebassets\\views\\pagamentos.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\planoContas.html",
+      "PackagePath": "staticwebassets\\views\\planoContas.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\produtosServicos.html",
+      "PackagePath": "staticwebassets\\views\\produtosServicos.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\resumo.html",
@@ -6731,10 +6639,6 @@
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\signin_up.html",
       "PackagePath": "staticwebassets\\views\\signin_up.html"
-    },
-    {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\texto.html",
-      "PackagePath": "staticwebassets\\views\\texto.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuarios.html",

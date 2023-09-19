@@ -1,0 +1,64 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <!--<button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>-->
+        <h4 class="modal-title">Usuário</h4>
+        <small class="font-bold">Cadastro de usuários.</small>
+    </div>
+    <form role="form" name="fatorForm">
+        <div class="modal-body" dw-loading="load" dw-loading-options="{text: 'Cadastrando...'}">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>Código Empresa</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="objUser.codigoEmpresa" disabled />
+                </div>
+                <div class="form-group col-md-8">
+                    <label>CPF</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="objUser.cpfCnpj" ui-br-cpf-mask />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Nome</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="objUser.nome" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Perfil</label>
+                    <select class="form-control form-control-modal" ng-model="objUser.perfil">
+                        <option value="" selected>-- Selecione --</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Operador">Operador</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>E-Mail</label>
+                <input class="form-control form-control-modal" type="email" ng-model="objUser.email" />
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Senha</label>
+                    <input class="form-control form-control-modal" type="password" ng-model="objUser.senha" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Confirme a senha</label>
+                    <input class="form-control form-control-modal" type="password" ng-model="objUser.senhaConfirmacao" />
+                </div>
+            </div>
+            <div class="row">
+                <div style="text-align: center;">
+                    <label class="label-error" ng-show="erroSenha">* As senhas não conferem, por favor, revise os campos.</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 form-check form-switch" style="padding-top: 50px;">
+                    <input id="ckbAtivo" class="form-check-input" type="checkbox" ng-model="objUser.status" ng-checked="objUser.status">
+                    <label class="form-check-label form-control-modal" for="ckbAtivo" style="font-size: 1.5rem; font-weight: 600;">Ativo</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-white" ng-click="cancel()">Fechar</button>-->
+            <button type="button" class="btn btn-primary" ng-click="Add()">Cadastrar</button>
+        </div>
+    </form>
+</div>

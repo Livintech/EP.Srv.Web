@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <!--<button class="btn btn-sm btn-outline btn-success btn-rounded" type="button" ng-click="addUsuario()"><i class="fa fa-plus"></i> Novo Usuario</button>-->
+                <button class="btn btn-sm btn-outline btn-success btn-rounded" type="button" ng-click="addUsuario('cadUsuario')"><i class="fa fa-plus"></i> Novo Usuario</button>
                 <div class="ibox-title bg-success">
                     <h5><strong>Usuários - Manutenção</strong></h5>
                     <div ibox-tools></div>
@@ -32,6 +32,8 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>Documento</th>
+                                    <th>Código Empresa</th>
+                                    <th>Perfil</th>
                                     <th>E-Mail</th>
                                     <th>Criado Em</th>
                                     <th>Atualizado Em</th>
@@ -43,6 +45,8 @@
                                 <tr ng-repeat="usu in GetUsuarios">
                                     <td>{{usu.nome}}</td>
                                     <td>{{usu.cpfCnpj}}</td>
+                                    <td>{{usu.codigoEmpresa}}</td>
+                                    <td>{{usu.perfil}}</td>
                                     <td>{{usu.email}}</td>
                                     <td>{{usu.criadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
                                     <td>{{usu.atualizadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
