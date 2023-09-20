@@ -1,0 +1,29 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Produto / Serviço</h4>
+        <!--<small class="font-bold">Tela exclusiva para manutenção de usuários.</small>-->
+    </div>
+    <form role="form" name="fatorForm">
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Código Empresa</label>
+                <input class="form-control form-control-modal" type="text" ng-model="objProduto.codigoEmpresa" disabled />
+            </div>
+            <div class="form-group">
+                <label>Forma de Pagamento</label>
+                <input class="form-control form-control-modal" type="text" ng-model="objProduto.descricao" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 form-check form-switch" style="padding-top: 50px;">
+                    <input id="ckbAtivo" class="form-check-input" type="checkbox" ng-model="objProduto.ativo" ng-checked="objProduto.ativo">
+                    <label class="form-check-label form-control-modal" for="ckbAtivo" style="font-size: 1.5rem; font-weight: 600;">Ativo</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="cancel()">Fechar</button>
+            <button type="button" class="btn btn-primary" ng-click="alterar()">alterar</button>
+        </div>
+    </form>
+</div>

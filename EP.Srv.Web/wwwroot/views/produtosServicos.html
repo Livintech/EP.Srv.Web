@@ -19,7 +19,7 @@
     <div class="col-lg-2">
     </div>
 </div>
-<div class="wrapper wrapper-content animated fadeInRight" ng-controller="ProdutosCtrl" dw-loading="load" dw-loading-options="{text: 'Cadastrando...'}">
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="ProdutosServicosCtrl" dw-loading="load" dw-loading-options="{text: 'Cadastrando...'}">
     <div class="row">
         <div class="col-lg-12">
             <div class="containner-head">
@@ -44,7 +44,7 @@
                             <!--<div class="col-lg-1"></div>-->
                             <div class="col-lg-3">
                                 <button type="button" class="btn btn-white btn-row-cancel" ng-click="limpar()">Limpar</button>
-                                <button type="button" class="btn btn-primary btn-row" ng-show="value == null" ng-click="gravar()">Gravar</button>
+                                <button type="button" class="btn btn-primary btn-row" ng-click="gravar()"  ng-disabled="filtroEmpresaSelecionado">Gravar</button>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pNXALr27/h8upxB3hdy8Cj9mhBS02TFjQhArc6m2OH0=",
+  "Hash": "GeMl1txy2L/rrxWgGlslHW2dxo2n64ZGQK+J/nT5wQo=",
   "Source": "EP.Srv.Web",
   "BasePath": "_content/EP.Srv.Web",
   "Mode": "Default",
@@ -28084,6 +28084,23 @@
       "OriginalItemSpec": "wwwroot\\views\\modal\\Banco\\editar_banco.html"
     },
     {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\CentroCusto\\editar_centro_custo.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/modal/CentroCusto/editar_centro_custo.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\modal\\CentroCusto\\editar_centro_custo.html"
+    },
+    {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\modal_base.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
@@ -28116,6 +28133,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\views\\modal\\Pagamento\\editar_pagamento.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\ProdutoServico\\editar_produto_servico.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/modal/ProdutoServico/editar_produto_servico.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\modal\\ProdutoServico\\editar_produto_servico.html"
     },
     {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Usuario\\editar_usuarios.html",

@@ -6605,8 +6605,16 @@
       "PackagePath": "staticwebassets\\views\\modal\\Banco\\editar_banco.html"
     },
     {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\CentroCusto\\editar_centro_custo.html",
+      "PackagePath": "staticwebassets\\views\\modal\\CentroCusto\\editar_centro_custo.html"
+    },
+    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Pagamento\\editar_pagamento.html",
       "PackagePath": "staticwebassets\\views\\modal\\Pagamento\\editar_pagamento.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\ProdutoServico\\editar_produto_servico.html",
+      "PackagePath": "staticwebassets\\views\\modal\\ProdutoServico\\editar_produto_servico.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Usuario\\editar_usuarios.html",

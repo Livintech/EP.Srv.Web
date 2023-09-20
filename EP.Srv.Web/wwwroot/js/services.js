@@ -210,7 +210,7 @@ angular.module('EP')
                 });
         }
     })
-    .service('ProdutosService', function ($http, constants, $localStorage) {
+    .service('ProdutosServicosService', function ($http, constants, $localStorage) {
         var params = { headers: { 'Authorization': '' } };
 
         this.GravarDadosProdutos = function (objJson) {
@@ -222,7 +222,7 @@ angular.module('EP')
                 });
         };
 
-        this.GetProdutosServicao = function (objJson) {
+        this.ListarProdutosServicos = function (objJson) {
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
 
             return $http.post(constants.UrlClienteApi + 'Produtos/Cadastrar', objJson, params)
@@ -250,6 +250,24 @@ angular.module('EP')
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
 
             return $http.post(constants.UrlClienteApi + 'CentroDeCustos/Cadastrar', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        this.AtualizarCentroCusto = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'CentroDeCustos/Atualizar', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        this.ListarCentroCustos = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'CentroDeCustos/Listar', objJson, params)
                 .then(function (response) {
                     return response.data;
                 });

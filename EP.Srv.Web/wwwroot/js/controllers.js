@@ -962,29 +962,42 @@ angular.module('EP')
                 }
             ]);
     })
-    .controller('ProdutosCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, ProdutosService) {
+    .controller('ProdutosServicosCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, ProdutosServicosService, $uibModal) {
         $scope.OnInit = function () {
             $scope.getProdutosServicos = [];
             $scope.obj = {
-                codigo: '0010',
-                descricao: 'TEste',
-                criadoEm: '12/09/2023',
-                atualizadoEm: '',
-                status: 'Inativo'
+                empresaId: '',
+                descricao: '',
+                codigoEmpresa: ''
             };
+            $scope.erroCampo = false;
+            $scope.textoErro = '';
 
-            //ProdutosService.GetProdutosServicao()
-            //    .then(function (response) {
-            //        var data = response;
-            //        if (data.success) {
-            //            $loading.finish('load');
-            //$scope.getProdutosServicos = data.data;
-            $scope.getProdutosServicos.push($scope.obj);
-            //    }
-            //}, function (error) {
-            //    $loading.finish('load');
-            //    console.log(error);
-            //});
+            $scope.filtroEmpresaSelecionado = true;
+
+            if ($localStorage.user.filtroEmpresa != undefined) {
+                $loading.start('load');
+
+                $scope.filtroEmpresaSelecionado = false;
+                $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
+                $scope.obj.codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5);
+
+                ProdutosServicosService.ListarProdutosServicos()
+                    .then(function (response) {
+                        $loading.finish('load');
+
+                        var data = response;
+                        if (data.success) {
+                            angular.forEach(data.data, function (value, index) {
+                                if (index == '$values') {
+                                    $scope.getProdutosServicos = value;
+                                }
+                            });
+                        }
+                    }, function (error) {
+                        console.log("Erro " + JSON.stringify(error));
+                    });
+            }
         };
 
         $scope.limpar = function () {
@@ -992,43 +1005,107 @@ angular.module('EP')
         };
 
         $scope.gravar = function () {
-            $loading.start('load');
+            $scope.erroCampo = false;
+            $scope.textoErro = '';
 
-            ProdutosService.GravarDadosProdutos($scope.obj)
-                .then(function (response) {
-                    var data = response;
-                    if (data.success) {
+            if ($scope.obj.descricao == '') {
+                $scope.erroCampo = true;
+                $scope.textoErro = '* Campo obrigatório';
+                return;
+            } else {
+                $loading.start('load');
+                $scope.erroCampo = false;
+                $scope.textoErro = '';
+
+                ProdutosServicosService.GravarDadosProdutos($scope.obj)
+                    .then(function (response) {
                         $loading.finish('load');
 
-                        SweetAlert.swal({
-                            title: "Sucesso!",
-                            text: "Cadastro finalizado com sucesso.",
-                            type: "success"
-                        });
+                        if (response.success) {
 
-                        window.location.reload();
-                    } else {
-                        $loading.finish('load');
-
-                        SweetAlert.swal({
-                            title: "Erro!",
-                            text: "Não foi possível finalizar o cadastro. Entre em contato com o administrador do sistema.",
-                            type: "error"
-                        });
-                    }
-                }, function (error) {
-                    $loading.finish('load');
-                    console.log(error);
-
-                    SweetAlert.swal({
-                        title: "Erro!",
-                        text: "Erro ao solicitar sua requisição, entre em contato com o suporte para mais informações.",
-                        type: "error"
+                            SweetAlert.swal({
+                                title: "Sucesso!",
+                                text: response.message,
+                                type: "success"
+                            },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $scope.OnInit();
+                                    }
+                                });
+                        } else {
+                            SweetAlert.swal({
+                                title: "Erro!",
+                                text: response.message,
+                                type: "error"
+                            });
+                        }
+                    }, function (error) {
+                        console.log("Erro " + JSON.stringify(error));
                     });
-                });
+            }
         };
 
         $scope.OnInit();
+
+        $scope.editar = function (data) {
+            $uibModal.open({
+                scope: $scope,
+                backdrop: false,
+                templateUrl: 'views/modal/Pagamento/editar_produto_servico.html',
+                controller: function ($scope, $uibModalInstance, produtoServicoSelected, $timeout) {
+
+                    $scope.objProduto = {};
+                    $scope.objProduto.id = produtoServicoSelected.id;
+                    $scope.objProduto.codigoEmpresa = produtoServicoSelected.codigoEmpresa;
+                    $scope.objProduto.empresaId = produtoServicoSelected.empresaId.toString();
+                    $scope.objProduto.descricao = produtoServicoSelected.descricao;
+                    $scope.objProduto.ativo = produtoServicoSelected.ativo;
+
+                    $scope.alterar = function () {
+                        $loading.start('load');
+
+                        ProdutosServicosService.AtualizaPagamento($scope.objProduto).then(function (response) {
+                            $loading.finish('load');
+
+                            if (response.success) {
+
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: response.message,
+                                    type: "success"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            $scope.OnInit();
+                                        }
+                                    });
+                            } else {
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Erro!",
+                                    text: response.message,
+                                    type: "error"
+                                });
+                            }
+                        }, function (error) {
+
+                        });
+                    }
+
+                    $scope.cancel = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+                },
+                windowClass: "animated fadeIn",
+                resolve: {
+                    produtoServicoSelected: function () {
+                        return data;
+                    }
+                }
+            });
+        }
 
         $scope.dtOptions = DTOptionsBuilder.newOptions()
             .withDOM('<"html5buttons"B>lTfgitp')
@@ -1076,8 +1153,8 @@ angular.module('EP')
 
             if (filtroEmpresa != undefined) {
                 $scope.filtroEmpresaSelecionado = false;
-            } 
-            
+            }
+
             var newObj = {
                 empresaId: filtroEmpresa == undefined ? '' : filtroEmpresa.id.toString()
             };
@@ -1462,6 +1539,171 @@ angular.module('EP')
                 windowClass: "animated fadeIn",
                 resolve: {
                     pagamentoSelected: function () {
+                        return data;
+                    }
+                }
+            });
+        }
+
+        $scope.OnInit();
+    })
+    .controller('CentroCustoCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, CentroCustoService, $localStorage, $uibModal) {
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'Usuarios_' + Date.now },
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
+
+
+        $scope.OnInit = function () {
+            $scope.obj = {
+                empresaId: '',
+                descricao: '',
+                codigoEmpresa: ''
+            }
+
+            $scope.erroCampo = false;
+            $scope.textoErro = '';
+
+            $scope.filtroEmpresaSelecionado = true;
+
+            if ($localStorage.user.filtroEmpresa != undefined) {
+                $loading.start('load');
+
+                $scope.filtroEmpresaSelecionado = false;
+                $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
+                $scope.obj.codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5);
+
+                CentroCustoService.ListarCentroCustos($scope.obj)
+                    .then(function (response) {
+                        $loading.finish('load');
+
+                        var data = response;
+                        if (data.success) {
+                            angular.forEach(data.data, function (value, index) {
+                                if (index == '$values') {
+                                    $scope.listaCentroCustos = value;
+                                }
+                            });
+                        }
+                    }, function (error) {
+                        console.log("Erro " + JSON.stringify(error));
+                    });
+            }
+        };
+
+        $scope.limpar = function () {
+            $scope.OnInit();
+        };
+
+        $scope.gravar = function () {
+            $scope.erroCampo = false;
+            $scope.textoErro = '';
+
+            if ($scope.obj.descricao == '') {
+                $scope.erroCampo = true;
+                $scope.textoErro = '* Campo obrigatório';
+                return;
+            } else {
+                $loading.start('load');
+                $scope.erroCampo = false;
+                $scope.textoErro = '';
+
+                CentroCustoService.GravarCentroCusto($scope.obj)
+                    .then(function (response) {
+                        $loading.finish('load');
+
+                        if (response.success) {
+
+                            SweetAlert.swal({
+                                title: "Sucesso!",
+                                text: response.message,
+                                type: "success"
+                            },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $scope.OnInit();
+                                    }
+                                });
+                        } else {
+                            SweetAlert.swal({
+                                title: "Erro!",
+                                text: response.message,
+                                type: "error"
+                            });
+                        }
+                    }, function (error) {
+                        console.log("Erro " + JSON.stringify(error));
+                    });
+            }
+        };
+
+        $scope.editar = function (data) {
+            $uibModal.open({
+                scope: $scope,
+                backdrop: false,
+                templateUrl: 'views/modal/CentroCusto/editar_centro_custo.html',
+                controller: function ($scope, $uibModalInstance, centroCustoSelected, $timeout) {
+
+                    $scope.objCentroCusto = {};
+                    $scope.objCentroCusto.id = centroCustoSelected.id;
+                    $scope.objCentroCusto.codigoEmpresa = centroCustoSelected.codigoEmpresa;
+                    $scope.objCentroCusto.empresaId = centroCustoSelected.empresaId.toString();
+                    $scope.objCentroCusto.descricao = centroCustoSelected.descricao;
+                    $scope.objCentroCusto.ativo = centroCustoSelected.ativo;
+
+                    $scope.alterar = function () {
+                        $loading.start('load');
+
+                        CentroCustoService.AtualizarCentroCusto($scope.objCentroCusto).then(function (response) {
+                            $loading.finish('load');
+
+                            if (response.success) {
+
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: response.message,
+                                    type: "success"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            $scope.OnInit();
+                                        }
+                                    });
+                            } else {
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Erro!",
+                                    text: response.message,
+                                    type: "error"
+                                });
+                            }
+                        }, function (error) {
+
+                        });
+                    }
+
+                    $scope.cancel = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+                },
+                windowClass: "animated fadeIn",
+                resolve: {
+                    centroCustoSelected: function () {
                         return data;
                     }
                 }
