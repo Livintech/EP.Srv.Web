@@ -34,17 +34,18 @@
                         <div class="row mb-2">
                             <div class="col-lg-2">
                                 <label>Código</label>
-                                <input type="text" id="codigo" name="codigo" placeholder="Código" class="form-control form-control-modal" ng-model="obj.codigo">
+                                <input type="text" id="codigo" name="codigo" placeholder="Código" class="form-control form-control-modal" ng-model="obj.codigoEmpresa" disabled>
                             </div>
                             <div class="col-lg-6">
                                 <label>Descrição</label>
-                                <input type="text" id="descricao" name="descricao" placeholder="Descrição" class="form-control form-control-modal" ng-model="obj.descricao">
+                                <input type="text" id="descricao" name="descricao" placeholder="Descrição" class="form-control form-control-modal" ng-model="obj.descricao" ng-change="change(obj.descricao)">
+                                <label class="label-error" ng-show="erroCampo">{{textoErro}}</label>
                             </div>
                             <div class="col-lg-2"></div>
                             <!--<div class="col-lg-1"></div>-->
                             <div class="col-lg-3">
                                 <button type="button" class="btn btn-white btn-row-cancel" ng-click="limpar()">Limpar</button>
-                                <button type="button" class="btn btn-primary btn-row" ng-click="gravar()"  ng-disabled="filtroEmpresaSelecionado">Gravar</button>
+                                <button type="button" class="btn btn-primary btn-row" ng-click="gravar()" ng-disabled="filtroEmpresaSelecionado">Gravar</button>
                             </div>
                         </div>
                     </div>
@@ -64,7 +65,8 @@
                             <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Código</th>
+                                        <th>Id</th>
+                                        <th>Código Empresa</th>
                                         <th>Descrição</th>
                                         <th>Criado Em</th>
                                         <th>Atualizado Em</th>
@@ -74,11 +76,12 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="prd in getProdutosServicos">
-                                        <td>{{prd.codigo}}</td>
+                                        <td>{{prd.id}}</td>
+                                        <td>{{prd.codigoEmpresa}}</td>
                                         <td>{{prd.descricao}}</td>
                                         <td>{{prd.criadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
                                         <td>{{prd.atualizadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
-                                        <td ng-class="{'bg-primary': prd.status == 'Ativo', 'bg-danger' : prd.status == 'Inativo'}">{{ prd.status }}</td>
+                                        <td ng-class="{'bg-primary': prd.ativo, 'bg-danger' : prd.aivo}">{{ prd.ativo ? 'Ativo' : 'Inativo' }}</td>
                                         <td><button class="btn btn-sm btn-outline btn-primary btn-rounded" type="button" ng-click="editar(prd)"><i class="fa fa-edit"></i> Alterar</button></td>
                                     </tr>
                                 </tbody>

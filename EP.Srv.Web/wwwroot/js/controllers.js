@@ -206,25 +206,15 @@ angular.module('EP')
                 }, function (error) {
                     $loading.finish('load');
 
-                    if (error.data != null) {
-                        angular.forEach(error.data, function (value, index) {
-                            toaster.pop({
-                                type: 'error',
-                                title: value.propertyName,
-                                body: value.errorMessage,
-                                showCloseButton: true,
-                                timeout: 5000
-                            });
-                        });
-                    } else {
-                        toaster.pop({
-                            type: 'error',
-                            title: 'Erro ao logar',
-                            body: 'Ocorreu um erro inesperado no login.',
-                            showCloseButton: true,
-                            timeout: 5000
-                        });
-                    }
+                    toaster.pop({
+                        type: 'error',
+                        title: 'Erro ao logar',
+                        body: 'Ocorreu um erro inesperado no login. \nEntre em contato com o administrador/suporte.',
+                        showCloseButton: true,
+                        timeout: 5000
+                    });
+
+                    console.log("Log --> " + JSON.stringify(error.data));
                 });
             }
         }
@@ -962,7 +952,7 @@ angular.module('EP')
                 }
             ]);
     })
-    .controller('ProdutosServicosCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, ProdutosServicosService, $uibModal) {
+    .controller('ProdutosServicosCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, ProdutosServicosService, $uibModal, $localStorage) {
         $scope.OnInit = function () {
             $scope.getProdutosServicos = [];
             $scope.obj = {
@@ -978,11 +968,11 @@ angular.module('EP')
             if ($localStorage.user.filtroEmpresa != undefined) {
                 $loading.start('load');
 
-                $scope.filtroEmpresaSelecionado = false;
+                //$scope.filtroEmpresaSelecionado = false;
                 $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
                 $scope.obj.codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5);
 
-                ProdutosServicosService.ListarProdutosServicos()
+                ProdutosServicosService.ListarProdutosServicos($scope.obj)
                     .then(function (response) {
                         $loading.finish('load');
 
@@ -1052,7 +1042,7 @@ angular.module('EP')
             $uibModal.open({
                 scope: $scope,
                 backdrop: false,
-                templateUrl: 'views/modal/Pagamento/editar_produto_servico.html',
+                templateUrl: 'views/modal/ProdutoServico/editar_produto_servico.html',
                 controller: function ($scope, $uibModalInstance, produtoServicoSelected, $timeout) {
 
                     $scope.objProduto = {};
@@ -1065,7 +1055,7 @@ angular.module('EP')
                     $scope.alterar = function () {
                         $loading.start('load');
 
-                        ProdutosServicosService.AtualizaPagamento($scope.objProduto).then(function (response) {
+                        ProdutosServicosService.AtualizaProdutoServico($scope.objProduto).then(function (response) {
                             $loading.finish('load');
 
                             if (response.success) {
@@ -1105,6 +1095,16 @@ angular.module('EP')
                     }
                 }
             });
+        }
+
+        $scope.change = function (texto) {
+            if (texto.length >= 3) {
+                $scope.erroCampo = false;
+                $scope.textoErro = '';
+                $scope.filtroEmpresaSelecionado = false;
+            } else {
+                $scope.filtroEmpresaSelecionado = true;
+            }
         }
 
         $scope.dtOptions = DTOptionsBuilder.newOptions()

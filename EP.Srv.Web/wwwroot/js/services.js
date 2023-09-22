@@ -216,7 +216,7 @@ angular.module('EP')
         this.GravarDadosProdutos = function (objJson) {
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
 
-            return $http.post(constants.UrlClienteApi + 'Produtos/Cadastrar', objJson, params)
+            return $http.post(constants.UrlClienteApi + 'ProdutosServicos/Cadastrar', objJson, params)
                 .then(function (response) {
                     return response.data;
                 });
@@ -225,7 +225,16 @@ angular.module('EP')
         this.ListarProdutosServicos = function (objJson) {
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
 
-            return $http.post(constants.UrlClienteApi + 'Produtos/Cadastrar', objJson, params)
+            return $http.post(constants.UrlClienteApi + 'ProdutosServicos/Listar', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                });
+        };
+
+        this.AtualizaProdutoServico = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'ProdutosServicos/Atualizar', objJson, params)
                 .then(function (response) {
                     return response.data;
                 });
