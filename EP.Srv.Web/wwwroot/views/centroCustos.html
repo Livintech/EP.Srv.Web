@@ -37,16 +37,16 @@
                                     <label>Codigo Empresa</label>
                                     <input type="text" class="form-control form-control-modal" ng-model="obj.codigoEmpresa" disabled>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-6">
                                     <label>Forma de Pagamento</label>
-                                    <input type="text" class="form-control form-control-modal" placeholder="Descrição centro de custo" ng-model="obj.descricao">
+                                    <input type="text" class="form-control form-control-modal" placeholder="Descrição centro de custo" ng-model="obj.descricao" ng-change="change(obj.descricao)">
                                     <label class="label-error" ng-show="erroCampo">{{textoErro}}</label>
                                 </div>
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-2">
                                     <div style="float: right !important; margin-top: 25px;">
-                                        <button type="button" class="btn btn-white" ng-click="limpar()">Limpar</button>
-                                        <button type="button" class="btn btn-primary" ng-click="gravar()" ng-disabled="filtroEmpresaSelecionado">Gravar</button>
+                                        <button type="button" class="btn btn-white" ng-click="limpar()" data-toggle="tooltip" data-placement="top">Limpar</button>
+                                        <button type="button" id="btnGravar" class="btn btn-primary" ng-click="gravar()" ng-disabled="filtroEmpresaSelecionado" data-toggle="tooltip" data-placement="top">Gravar</button>
                                     </div>
                                 </div>
                             </div>

@@ -42,10 +42,11 @@
                                 <label class="label-error" ng-show="erroCampo">{{textoErro}}</label>
                             </div>
                             <div class="col-lg-2"></div>
-                            <!--<div class="col-lg-1"></div>-->
-                            <div class="col-lg-3">
-                                <button type="button" class="btn btn-white btn-row-cancel" ng-click="limpar()">Limpar</button>
-                                <button type="button" class="btn btn-primary btn-row" ng-click="gravar()" ng-disabled="filtroEmpresaSelecionado">Gravar</button>
+                            <div class="col-lg-2">
+                                <div style="float: right !important; margin-top: 25px;">
+                                    <button type="button" class="btn btn-white" ng-click="limpar()" data-toggle="tooltip" data-placement="top">Limpar</button>
+                                    <button type="button" id="btnGravar" class="btn btn-primary" ng-click="gravar()" ng-disabled="filtroEmpresaSelecionado" data-toggle="tooltip" data-placement="top">Gravar</button>
+                                </div>
                             </div>
                         </div>
                     </div>

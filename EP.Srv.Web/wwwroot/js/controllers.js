@@ -1098,7 +1098,7 @@ angular.module('EP')
         }
 
         $scope.change = function (texto) {
-            if (texto.length >= 3) {
+            if (texto.length >= 3 && $localStorage.user.filtroEmpresa != undefined) {
                 $scope.erroCampo = false;
                 $scope.textoErro = '';
                 $scope.filtroEmpresaSelecionado = false;
@@ -1126,6 +1126,11 @@ angular.module('EP')
                     }
                 }
             ]);
+
+        //$(function () {
+        //    $('[type="button"]').tooltip();
+        //    $('[type="button"]').title = 'Teste ToolTip';
+        //});
     })
     .controller('BancoCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, BancoService, $localStorage, $uibModal) {
 
@@ -1418,7 +1423,7 @@ angular.module('EP')
             $scope.filtroEmpresaSelecionado = true;
 
             if ($localStorage.user.filtroEmpresa != undefined) {
-                $scope.filtroEmpresaSelecionado = false;
+                //$scope.filtroEmpresaSelecionado = false;
                 $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
                 $scope.obj.codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5);
 
@@ -1437,6 +1442,9 @@ angular.module('EP')
                     }, function (error) {
                         console.log("Erro " + JSON.stringify(error));
                     });
+            } else {
+                $loading.finish('load');
+                //$('[data-toggle="tooltip"]').prop('title', 'Selecione Empresa');
             }
         };
 
@@ -1545,7 +1553,21 @@ angular.module('EP')
             });
         }
 
+        $scope.change = function (texto) {
+            if (texto.length >= 3 && $localStorage.user.filtroEmpresa != undefined) {
+                $scope.erroCampo = false;
+                $scope.textoErro = '';
+                $scope.filtroEmpresaSelecionado = false;
+            } else {
+                $scope.filtroEmpresaSelecionado = true;
+            }
+        }
+
         $scope.OnInit();
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     })
     .controller('CentroCustoCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, CentroCustoService, $localStorage, $uibModal) {
         $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -1583,7 +1605,7 @@ angular.module('EP')
             if ($localStorage.user.filtroEmpresa != undefined) {
                 $loading.start('load');
 
-                $scope.filtroEmpresaSelecionado = false;
+                //$scope.filtroEmpresaSelecionado = false;
                 $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
                 $scope.obj.codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5);
 
@@ -1602,6 +1624,8 @@ angular.module('EP')
                     }, function (error) {
                         console.log("Erro " + JSON.stringify(error));
                     });
+            } else {
+                $loading.finish('load');
             }
         };
 
@@ -1708,7 +1732,17 @@ angular.module('EP')
                     }
                 }
             });
-        }
+        };
+
+        $scope.change = function (texto) {
+            if (texto.length >= 3 && $localStorage.user.filtroEmpresa != undefined) {
+                $scope.erroCampo = false;
+                $scope.textoErro = '';
+                $scope.filtroEmpresaSelecionado = false;
+            } else {
+                $scope.filtroEmpresaSelecionado = true;
+            }
+        };
 
         $scope.OnInit();
     })
