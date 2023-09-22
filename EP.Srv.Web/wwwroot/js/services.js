@@ -149,6 +149,19 @@ angular.module('EP')
                 });
         }
 
+        this.AtualizarCliente = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'Cliente/Atualizar', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                }, function (error) {
+                    angular.forEach(error.data, function (value, index) {
+                        return value;
+                    });
+                });
+        }
+
     })
     .service('BancoService', function ($http, constants, $localStorage) {
         var params = { headers: { 'Authorization': '' } };

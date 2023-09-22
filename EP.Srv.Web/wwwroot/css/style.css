@@ -10496,6 +10496,10 @@ div.dataTables_wrapper div.dataTables_length select {
     border-color: #869177;
 }
 
+.modal-cliente-width {
+    width: 75% !important;
+}
+
 @keyframes effect {
     0% {
         transform: scale(0);

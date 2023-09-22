@@ -6609,6 +6609,10 @@
       "PackagePath": "staticwebassets\\views\\modal\\CentroCusto\\editar_centro_custo.html"
     },
     {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Cliente\\editar_cliente.html",
+      "PackagePath": "staticwebassets\\views\\modal\\Cliente\\editar_cliente.html"
+    },
+    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Pagamento\\editar_pagamento.html",
       "PackagePath": "staticwebassets\\views\\modal\\Pagamento\\editar_pagamento.html"
     },

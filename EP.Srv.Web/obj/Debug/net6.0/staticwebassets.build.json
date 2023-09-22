@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GeMl1txy2L/rrxWgGlslHW2dxo2n64ZGQK+J/nT5wQo=",
+  "Hash": "uE7Zo3XyxwHEFZk+93779ydTDv30pmyAtldFmVfqpzc=",
   "Source": "EP.Srv.Web",
   "BasePath": "_content/EP.Srv.Web",
   "Mode": "Default",
@@ -28099,6 +28099,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\views\\modal\\CentroCusto\\editar_centro_custo.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Cliente\\editar_cliente.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/modal/Cliente/editar_cliente.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\modal\\Cliente\\editar_cliente.html"
     },
     {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\modal_base.html",

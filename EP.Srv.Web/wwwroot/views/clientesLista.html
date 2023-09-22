@@ -52,7 +52,7 @@
                                     <td>{{ data.cnpj }}</td>
                                     <td>{{ data.email }}</td>
                                     <td>{{ data.telefone }}</td>
-                                    <td>{{ data.tipo }}</td>
+                                    <td>{{ data.descricaoTipo }}</td>
                                     <td>{{ data.criadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
                                     <td>{{ data.atualizadoEm | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
                                     <td>
@@ -60,9 +60,9 @@
                                         <i ng-show="data.ativo == false" class="fa fa-times text-danger"></i>
                                     </td>
                                     <td>
-                                        <!--<button class="btn btn-sm btn-outline btn-primary btn-rounded" type="button" ng-click="editar(data)"><i class="fa fa-edit"></i> Alterar</button>-->
-                                        <button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" ng-show="data.ativo == false" ng-click="ativarDesativar(data)"><i class="fa fa-trash"></i> Ativar</button>
-                                        <button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" ng-show="data.ativo == true" ng-click="ativarDesativar(data)"><i class="fa fa-trash"></i> Desativar</button>
+                                        <button class="btn btn-sm btn-outline btn-primary btn-rounded" type="button" ng-click="editar(data)"><i class="fa fa-edit"></i> Alterar</button>
+                                        <!--<button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" ng-show="data.ativo == false" ng-click="ativarDesativar(data)"><i class="fa fa-trash"></i> Ativar</button>
+                                        <button class="btn btn-sm btn-outline btn-danger btn-rounded" type="button" ng-show="data.ativo == true" ng-click="ativarDesativar(data)"><i class="fa fa-trash"></i> Desativar</button>-->
                                     </td>
                                 </tr>
                             </tbody>
