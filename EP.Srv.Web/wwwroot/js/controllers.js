@@ -1864,7 +1864,9 @@ angular.module('EP')
             senhaConfirmacao: ''
         }
 
-        UsuarioService.GetUsers().then(function (response) {
+        var newObj = { codigoEmpresa: $localStorage.user.filtroEmpresa == undefined ? '' : ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5) };
+
+        UsuarioService.GetUsers(newObj).then(function (response) {
             $scope.GetUsuarios = response.data;
             $loading.finish('load');
         });
@@ -1934,20 +1936,8 @@ angular.module('EP')
                 templateUrl: 'views/modal/Usuario/incluir_usuarios.html',
                 controller: function ($scope, $uibModalInstance, $loading, SweetAlert, UsuarioService) {
 
-                    var tipoEmpresa = $localStorage.user.filtroEmpresa?.tipo;
-                    var codigoEmpresa = $localStorage.user.filtroEmpresa?.codigo;
-
-                    if (tipoEmpresa == '' || tipoEmpresa == undefined) {
-                        SweetAlert.swal({
-                            title: "Erro!",
-                            text: "Empresa não encontrada. Selecione uma empresa válida",
-                            type: "error"
-                        });
-
-                        return;
-                    }
-
-                    $scope.objUser.codigoEmpresa = codigoEmpresa + "." + tipoEmpresa;
+                    var codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa?.id).slice(-5);
+                    $scope.objUser.codigoEmpresa = codigoEmpresa;
 
                     $scope.Add = function () {
 

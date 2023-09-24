@@ -68,8 +68,7 @@ angular.module('EP')
 
         var params = { headers: { 'Authorization': '' } };
 
-        this.GetUsers = function () {
-            var obj = {};
+        this.GetUsers = function (obj) {
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
 
             return $http.post(constants.UrlAuthApi + 'User/GetUserAll', obj, params)
