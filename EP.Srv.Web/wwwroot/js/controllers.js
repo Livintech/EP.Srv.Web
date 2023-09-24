@@ -1232,7 +1232,7 @@ angular.module('EP')
                                 if (resp.success) {
 
                                     angular.forEach(resp.data.$values, function (value, index) {
-                                        if (value.codigo == response.data.codigoEmpresa.substr(0, 5)) {
+                                        if (value.id == response.data.codigoEmpresa.substr(0, 5)) {
                                             $localStorage.user.filtroEmpresa = value;
                                         };
                                     });
