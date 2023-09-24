@@ -1,0 +1,108 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Empresa</h4>
+        <small class="font-bold">Tela exclusiva para manutenção da empresa.</small>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form role="form" name="clienteForm">
+                        <div>
+                            <!--{{errorForm}}-->
+                            <div class="row mb-2">
+                                <div class="col-lg-2">
+                                    <label>Id</label>
+                                    <input type="text"  class="form-control form-control-modal" ng-model="objEmpresa.id" disabled>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Nome / Razão Social</label>
+                                    <input type="text"  class="form-control form-control-modal" ng-model="objEmpresa.nomeRazao">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Data Situacao</label>
+                                    <input type="datetime" class="form-control form-control-modal" placeholder="Data Inicial" ng-model="objEmpresa.dataSituacao"
+                                           uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar"
+                                           is-open="popup1.opened" datepicker-options="dateOptions" ng-click="open1()">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Tipo</label>
+                                    <select class="form-control form-control-modal" ng-model="objEmpresa.tipo" ng-change="change()" disabled>
+                                        <option value="" selected>-- Selecione --</option>
+                                        <option value="EMP" ng-show="perfil == 'Master'">Empresa</option>
+                                        <option value="CLI">Cliente</option>
+                                        <option value="FOR">Fornecedor</option>
+                                        <option value="PRES">Prestador de Serviços</option>
+                                        <option value="FUNC">Funcionário</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-2">
+                                    <label>CPF</label>
+                                    <input type="text"  class="form-control form-control-modal" ng-model="objEmpresa.cpf" ng-change="change()" ui-br-cpf-mask>
+                                    <label class="label-error" ng-show="erroCpf">* CPF inválido</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>CNPJ</label>
+                                    <input type="text"  class="form-control form-control-modal" ng-class="{'form-field-invalid':erroCnpj}" ng-model="objEmpresa.cnpj" ng-change="change()" ui-br-cnpj-mask>
+                                    <label class="label-error" ng-show="erroCnpj">* CNPJ inválido</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>E-mail</label>
+                                    <input type="email"  class="form-control form-control-modal" ng-model="objEmpresa.email">
+                                    <label class="label-error" ng-show="erroEmail">* E-mail inválido</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Telefone</label>
+                                    <input type="text" class="form-control form-control-modal" ng-model="objEmpresa.telefone" ui-br-phone-number-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    <label>UF</label>
+                                    <input type="text"class="form-control form-control-modal" ng-model="objEmpresa.uf">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Cep</label>
+                                    <input type="text" class="form-control form-control-modal" ng-model="objEmpresa.cep" ui-br-cep-mask>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <label>Endereço</label>
+                                    <input type="text" class="form-control form-control-modal" ng-model="objEmpresa.endereco">
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <label>Número</label>
+                                    <input type="number" min="0" class="form-control form-control-modal" ng-model="objEmpresa.numero">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>Complemento</label>
+                                    <input type="text" class="form-control form-control-modal" ng-model="objEmpresa.complemento">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Bairro</label>
+                                    <input type="text" class="form-control form-control-modal" ng-model="objEmpresa.bairro">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Cidade</label>
+                                    <input type="text" class="form-control form-control-modal" ng-model="objEmpresa.cidade">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 form-check form-switch" style="padding-top: 50px;">
+                                <input id="ckbAtivo" class="form-check-input" type="checkbox" ng-model="objEmpresa.ativo" ng-checked="objEmpresa.ativo">
+                                <label class="form-check-label form-control-modal" for="ckbAtivo" style="font-size: 1.5rem; font-weight: 600;">Ativo</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-show="value == null" ng-click="alterar()">Atualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

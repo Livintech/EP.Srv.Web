@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ll5zm7Vkuv1mG9NzraivO5XlMNHyo589PvZhKkzxZog=",
+  "Hash": "MKR7AFTY1WuqeShwZO7mrn/cJrlMRWcTI5tV6rBIbGs=",
   "Source": "EP.Srv.Web",
   "BasePath": "_content/EP.Srv.Web",
   "Mode": "Default",
@@ -27693,23 +27693,6 @@
       "OriginalItemSpec": "wwwroot\\resources\\sms_frases.json"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\bancos.html",
-      "SourceId": "EP.Srv.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
-      "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/bancos.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\bancos.html"
-    },
-    {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\blank.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
@@ -27727,12 +27710,12 @@
       "OriginalItemSpec": "wwwroot\\views\\blank.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\bancos.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/cadastros.html",
+      "RelativePath": "views/cadastros/bancos.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -27741,15 +27724,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\cadastros.html"
+      "OriginalItemSpec": "wwwroot\\views\\cadastros\\bancos.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\centroCustos.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\cadastros.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/centroCustos.html",
+      "RelativePath": "views/cadastros/cadastros.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -27758,15 +27741,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\centroCustos.html"
+      "OriginalItemSpec": "wwwroot\\views\\cadastros\\cadastros.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cliente.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\centroCustos.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/cliente.html",
+      "RelativePath": "views/cadastros/centroCustos.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -27775,15 +27758,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\cliente.html"
+      "OriginalItemSpec": "wwwroot\\views\\cadastros\\centroCustos.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\clientesLista.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\cliente.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/clientesLista.html",
+      "RelativePath": "views/cadastros/cliente.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -27792,7 +27775,58 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\clientesLista.html"
+      "OriginalItemSpec": "wwwroot\\views\\cadastros\\cliente.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\pagamentos.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/cadastros/pagamentos.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\cadastros\\pagamentos.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\planoContas.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/cadastros/planoContas.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\cadastros\\planoContas.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\produtosServicos.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/cadastros/produtosServicos.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\cadastros\\produtosServicos.html"
     },
     {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\common\\content.html",
@@ -28033,23 +28067,6 @@
       "OriginalItemSpec": "wwwroot\\views\\consolidado.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\forgot_password.html",
-      "SourceId": "EP.Srv.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
-      "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/forgot_password.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\forgot_password.html"
-    },
-    {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\login.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
@@ -28116,6 +28133,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\views\\modal\\Cliente\\editar_cliente.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Empresa\\editar_empresa.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/modal/Empresa/editar_empresa.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\modal\\Empresa\\editar_empresa.html"
     },
     {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\modal_base.html",
@@ -28220,12 +28254,12 @@
       "OriginalItemSpec": "wwwroot\\views\\modal\\Usuario\\incluir_usuarios.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\pagamentos.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\contasReceber.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/pagamentos.html",
+      "RelativePath": "views/movimentacao/contasReceber.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -28234,15 +28268,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\pagamentos.html"
+      "OriginalItemSpec": "wwwroot\\views\\movimentacao\\contasReceber.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\planoContas.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\relatorios\\clientesLista.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/planoContas.html",
+      "RelativePath": "views/relatorios/clientesLista.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -28251,15 +28285,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\planoContas.html"
+      "OriginalItemSpec": "wwwroot\\views\\relatorios\\clientesLista.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\produtosServicos.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\relatorios\\empresasLista.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/produtosServicos.html",
+      "RelativePath": "views/relatorios/empresasLista.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -28268,7 +28302,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\produtosServicos.html"
+      "OriginalItemSpec": "wwwroot\\views\\relatorios\\empresasLista.html"
     },
     {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\resumo.html",
@@ -28288,12 +28322,12 @@
       "OriginalItemSpec": "wwwroot\\views\\resumo.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\signin_up.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuario\\forgot_password.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/signin_up.html",
+      "RelativePath": "views/usuario/forgot_password.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -28302,15 +28336,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\signin_up.html"
+      "OriginalItemSpec": "wwwroot\\views\\usuario\\forgot_password.html"
     },
     {
-      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuarios.html",
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuario\\signin_up.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
       "BasePath": "_content/EP.Srv.Web",
-      "RelativePath": "views/usuarios.html",
+      "RelativePath": "views/usuario/signin_up.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -28319,7 +28353,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\usuarios.html"
+      "OriginalItemSpec": "wwwroot\\views\\usuario\\signin_up.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuario\\usuarios.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/usuario/usuarios.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\usuario\\usuarios.html"
     }
   ]
 }

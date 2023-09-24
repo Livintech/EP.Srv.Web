@@ -123,7 +123,6 @@ angular.module('EP')
 
         this.ObterEmpresas = function (objJson) {
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
-            objJson = {};
 
             return $http.post(constants.UrlClienteApi + 'Cliente/ListarEmpresas', objJson, params)
                 .then(function (response) {
@@ -152,6 +151,19 @@ angular.module('EP')
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
 
             return $http.post(constants.UrlClienteApi + 'Cliente/Atualizar', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                }, function (error) {
+                    angular.forEach(error.data, function (value, index) {
+                        return value;
+                    });
+                });
+        }
+
+        this.AtualizarEmpresa = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'Cliente/AtualizarEmpresa', objJson, params)
                 .then(function (response) {
                     return response.data;
                 }, function (error) {

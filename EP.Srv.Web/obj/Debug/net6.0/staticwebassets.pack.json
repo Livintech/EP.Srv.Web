@@ -6513,28 +6513,36 @@
       "PackagePath": "staticwebassets\\resources\\sms_frases.json"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\bancos.html",
-      "PackagePath": "staticwebassets\\views\\bancos.html"
-    },
-    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\blank.html",
       "PackagePath": "staticwebassets\\views\\blank.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros.html",
-      "PackagePath": "staticwebassets\\views\\cadastros.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\bancos.html",
+      "PackagePath": "staticwebassets\\views\\cadastros\\bancos.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\centroCustos.html",
-      "PackagePath": "staticwebassets\\views\\centroCustos.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\cadastros.html",
+      "PackagePath": "staticwebassets\\views\\cadastros\\cadastros.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cliente.html",
-      "PackagePath": "staticwebassets\\views\\cliente.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\centroCustos.html",
+      "PackagePath": "staticwebassets\\views\\cadastros\\centroCustos.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\clientesLista.html",
-      "PackagePath": "staticwebassets\\views\\clientesLista.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\cliente.html",
+      "PackagePath": "staticwebassets\\views\\cadastros\\cliente.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\pagamentos.html",
+      "PackagePath": "staticwebassets\\views\\cadastros\\pagamentos.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\planoContas.html",
+      "PackagePath": "staticwebassets\\views\\cadastros\\planoContas.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\cadastros\\produtosServicos.html",
+      "PackagePath": "staticwebassets\\views\\cadastros\\produtosServicos.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\common\\content.html",
@@ -6593,10 +6601,6 @@
       "PackagePath": "staticwebassets\\views\\consolidado.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\forgot_password.html",
-      "PackagePath": "staticwebassets\\views\\forgot_password.html"
-    },
-    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\login.html",
       "PackagePath": "staticwebassets\\views\\login.html"
     },
@@ -6611,6 +6615,10 @@
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Cliente\\editar_cliente.html",
       "PackagePath": "staticwebassets\\views\\modal\\Cliente\\editar_cliente.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Empresa\\editar_empresa.html",
+      "PackagePath": "staticwebassets\\views\\modal\\Empresa\\editar_empresa.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Pagamento\\editar_pagamento.html",
@@ -6637,28 +6645,32 @@
       "PackagePath": "staticwebassets\\views\\modal\\modal_base.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\pagamentos.html",
-      "PackagePath": "staticwebassets\\views\\pagamentos.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\contasReceber.html",
+      "PackagePath": "staticwebassets\\views\\movimentacao\\contasReceber.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\planoContas.html",
-      "PackagePath": "staticwebassets\\views\\planoContas.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\relatorios\\clientesLista.html",
+      "PackagePath": "staticwebassets\\views\\relatorios\\clientesLista.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\produtosServicos.html",
-      "PackagePath": "staticwebassets\\views\\produtosServicos.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\relatorios\\empresasLista.html",
+      "PackagePath": "staticwebassets\\views\\relatorios\\empresasLista.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\resumo.html",
       "PackagePath": "staticwebassets\\views\\resumo.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\signin_up.html",
-      "PackagePath": "staticwebassets\\views\\signin_up.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuario\\forgot_password.html",
+      "PackagePath": "staticwebassets\\views\\usuario\\forgot_password.html"
     },
     {
-      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuarios.html",
-      "PackagePath": "staticwebassets\\views\\usuarios.html"
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuario\\signin_up.html",
+      "PackagePath": "staticwebassets\\views\\usuario\\signin_up.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\usuario\\usuarios.html",
+      "PackagePath": "staticwebassets\\views\\usuario\\usuarios.html"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.EP.Srv.Web.Microsoft.AspNetCore.StaticWebAssets.props",

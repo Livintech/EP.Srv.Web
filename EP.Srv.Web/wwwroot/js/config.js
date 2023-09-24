@@ -110,7 +110,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('cadastrar.cliente', {
             url: "/cliente",
-            templateUrl: "views/cliente.html",
+            templateUrl: "views/cadastros/cliente.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -142,7 +142,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('cadastrar.geral', {
             url: "/geral",
-            templateUrl: "views/cadastros.html",
+            templateUrl: "views/cadastros/cadastros.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -174,7 +174,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('cadastrar.produtos', {
             url: "/produtosServicos",
-            templateUrl: "views/produtosServicos.html",
+            templateUrl: "views/cadastros/produtosServicos.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -206,7 +206,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('cadastrar.pagamentos', {
             url: "/pagamentos",
-            templateUrl: "views/pagamentos.html",
+            templateUrl: "views/cadastros/pagamentos.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -238,7 +238,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('cadastrar.centroCustos', {
             url: "/centroCustos",
-            templateUrl: "views/centroCustos.html",
+            templateUrl: "views/cadastros/centroCustos.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -270,7 +270,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('cadastrar.bancos', {
             url: "/bancos",
-            templateUrl: "views/bancos.html",
+            templateUrl: "views/cadastros/bancos.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -302,7 +302,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('cadastrar.planoContas', {
             url: "/planoContas",
-            templateUrl: "views/planoContas.html",
+            templateUrl: "views/cadastros/planoContas.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -338,8 +338,173 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
             templateUrl: "views/common/content.html"
         })
         .state('relatorios.clientesLista', {
-            url: "/consolidado",
-            templateUrl: "views/clientesLista.html",
+            url: "/Clientes",
+            templateUrl: "views/relatorios/clientesLista.html",
+            data: { pageTitle: 'Sistemas' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            serie: true,
+                            files: ['js/plugins/dataTables/datatables.min.js', 'css/plugins/dataTables/datatables.min.css']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables',
+                            files: ['js/plugins/dataTables/angular-datatables.min.js']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables.buttons',
+                            files: ['js/plugins/dataTables/angular-datatables.buttons.min.js']
+                        },
+                        {
+                            files: ['js/plugins/sweetalert/sweetalert.min.js', 'css/plugins/sweetalert/sweetalert.css']
+                        },
+                        {
+                            name: 'oitozero.ngSweetAlert',
+                            files: ['js/plugins/sweetalert/angular-sweetalert.min.js']
+                        }
+                    ]);
+                }
+            }
+        })
+        .state('relatorios.empresasLista', {
+            url: "/Empresas",
+            templateUrl: "views/relatorios/empresasLista.html",
+            data: { pageTitle: 'Sistemas' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            serie: true,
+                            files: ['js/plugins/dataTables/datatables.min.js', 'css/plugins/dataTables/datatables.min.css']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables',
+                            files: ['js/plugins/dataTables/angular-datatables.min.js']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables.buttons',
+                            files: ['js/plugins/dataTables/angular-datatables.buttons.min.js']
+                        },
+                        {
+                            files: ['js/plugins/sweetalert/sweetalert.min.js', 'css/plugins/sweetalert/sweetalert.css']
+                        },
+                        {
+                            name: 'oitozero.ngSweetAlert',
+                            files: ['js/plugins/sweetalert/angular-sweetalert.min.js']
+                        }
+                    ]);
+                }
+            }
+        })
+        .state('movimentacao', {
+            abstract: true,
+            url: "/movimentacao",
+            templateUrl: "views/common/content.html"
+        })
+        .state('movimentacao.faturamento', {
+            url: "/faturamento",
+            templateUrl: "views/movimentacao/faturamento.html",
+            data: { pageTitle: 'Sistemas' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            serie: true,
+                            files: ['js/plugins/dataTables/datatables.min.js', 'css/plugins/dataTables/datatables.min.css']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables',
+                            files: ['js/plugins/dataTables/angular-datatables.min.js']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables.buttons',
+                            files: ['js/plugins/dataTables/angular-datatables.buttons.min.js']
+                        },
+                        {
+                            files: ['js/plugins/sweetalert/sweetalert.min.js', 'css/plugins/sweetalert/sweetalert.css']
+                        },
+                        {
+                            name: 'oitozero.ngSweetAlert',
+                            files: ['js/plugins/sweetalert/angular-sweetalert.min.js']
+                        }
+                    ]);
+                }
+            }
+        })
+        .state('movimentacao.fluxoCaixa', {
+            url: "/fluxoCaixa",
+            templateUrl: "views/movimentacao/fluxoCaixa.html",
+            data: { pageTitle: 'Sistemas' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            serie: true,
+                            files: ['js/plugins/dataTables/datatables.min.js', 'css/plugins/dataTables/datatables.min.css']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables',
+                            files: ['js/plugins/dataTables/angular-datatables.min.js']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables.buttons',
+                            files: ['js/plugins/dataTables/angular-datatables.buttons.min.js']
+                        },
+                        {
+                            files: ['js/plugins/sweetalert/sweetalert.min.js', 'css/plugins/sweetalert/sweetalert.css']
+                        },
+                        {
+                            name: 'oitozero.ngSweetAlert',
+                            files: ['js/plugins/sweetalert/angular-sweetalert.min.js']
+                        }
+                    ]);
+                }
+            }
+        })
+        .state('movimentacao.contasPagar', {
+            url: "/contasPagar",
+            templateUrl: "views/movimentacao/contasPagar.html",
+            data: { pageTitle: 'Sistemas' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            serie: true,
+                            files: ['js/plugins/dataTables/datatables.min.js', 'css/plugins/dataTables/datatables.min.css']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables',
+                            files: ['js/plugins/dataTables/angular-datatables.min.js']
+                        },
+                        {
+                            serie: true,
+                            name: 'datatables.buttons',
+                            files: ['js/plugins/dataTables/angular-datatables.buttons.min.js']
+                        },
+                        {
+                            files: ['js/plugins/sweetalert/sweetalert.min.js', 'css/plugins/sweetalert/sweetalert.css']
+                        },
+                        {
+                            name: 'oitozero.ngSweetAlert',
+                            files: ['js/plugins/sweetalert/angular-sweetalert.min.js']
+                        }
+                    ]);
+                }
+            }
+        })
+        .state('movimentacao.contasReceber', {
+            url: "/contasReceber",
+            templateUrl: "views/movimentacao/contasReceber.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {

@@ -743,31 +743,27 @@ angular.module('EP')
             $scope.textoErro = '';
 
             $scope.filtroEmpresaSelecionado = true;
+            var newObj = { empresaId: $localStorage.user.filtroEmpresa == undefined ? '' : $localStorage.user.filtroEmpresa.id.toString() };
 
-            if ($localStorage.user.filtroEmpresa != undefined) {
-                //$scope.filtroEmpresaSelecionado = false;
-                $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
-                $scope.obj.codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5);
-
-                FormaPagamentoService.ObterListaPagamentos($scope.obj)
-                    .then(function (response) {
-                        $loading.finish('load');
-
-                        var data = response;
-                        if (data.success) {
-                            angular.forEach(data.data, function (value, index) {
-                                if (index == '$values') {
-                                    $scope.listaPagamentos = value;
-                                }
-                            });
-                        }
-                    }, function (error) {
-                        console.log("Erro " + JSON.stringify(error));
-                    });
-            } else {
-                $loading.finish('load');
-                //$('[data-toggle="tooltip"]').prop('title', 'Selecione Empresa');
+            if (newObj.empresaId != '') {
+                $scope.obj.codigoEmpresa = ("00000" + newObj.empresaId).slice(-5);
             }
+
+            FormaPagamentoService.ObterListaPagamentos(newObj)
+                .then(function (response) {
+                    $loading.finish('load');
+
+                    var data = response;
+                    if (data.success) {
+                        angular.forEach(data.data, function (value, index) {
+                            if (index == '$values') {
+                                $scope.listaPagamentos = value;
+                            }
+                        });
+                    }
+                }, function (error) {
+                    console.log("Erro " + JSON.stringify(error));
+                });
         };
 
         $scope.limpar = function () {
@@ -920,7 +916,7 @@ angular.module('EP')
                         }
 
                         var strNome = values.nomeRazao.substring(0, 30);
-                        values.nomeRazao = strNome.length >= 20 ? strNome + '..' : strNome;
+                        //values.nomeRazao = strNome.length >= 20 ? strNome + '..' : strNome;
                         values.telefone = formatarTel(values.telefone);
                         values.cnpj = formatarCNPJ(values.cnpj);
                         values.cpf = formatarCPF(values.cpf);
@@ -1060,6 +1056,256 @@ angular.module('EP')
                 resolve: {
                     clienteSelected: function () {
                         return cliente;
+                    }
+                }
+            });
+        }
+
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'ExampleFile' },
+                { extend: 'pdf', title: 'ExampleFile' },
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
+
+        $scope.OnInit();
+
+        $scope.OnIniModal = function () {
+            $(document).ready(function () {
+                $('.modal-dialog').addClass('modal-cliente-width');
+            });
+
+            $scope.dateOptions = {
+                formatYear: 'yy',
+                maxDate: new Date(),
+                minDate: new Date(),
+                startingDay: 1
+            };
+
+            $scope.inlineOptions = {
+                customClass: getDayClass,
+                minDate: new Date(),
+                showWeeks: true
+            };
+
+            $scope.format = 'dd/MM/yyyy'
+
+            $scope.toggleMin = function () {
+                $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+                $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+                $scope.dateOptions.currentText = false;
+            };
+
+            $scope.toggleMin();
+
+            $scope.open1 = function () {
+                $scope.popup1.opened = true;
+            };
+
+            $scope.popup1 = {
+                opened: false
+            };
+
+            function getDayClass(data) {
+                var date = data.date,
+                    mode = data.mode;
+                if (mode === 'day') {
+                    var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+
+                    for (var i = 0; i < $scope.events.length; i++) {
+                        var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
+
+                        if (dayToCheck === currentDay) {
+                            return $scope.events[i].status;
+                        }
+                    }
+                }
+
+                return '';
+            };
+        };
+    })
+    .controller('ListaEmpresasCtrl', function ($scope, ClienteService, $localStorage, $loading, DTOptionsBuilder, $uibModal, SweetAlert) {
+
+        $scope.OnInit = function () {
+            $loading.start('load');
+
+            $scope.perfil = $localStorage.user?.perfil;
+
+            var obj = {
+                codigoEmpresa: $localStorage.user.filtroEmpresa == undefined ? '' : ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5)
+            };
+
+            ClienteService.ObterEmpresas(obj).then(function (response) {
+                var objResponse = response;
+                if (objResponse.success) {
+                    $scope.lstEmpresas = objResponse.data.$values;
+                    angular.forEach($scope.lstEmpresas, function (values, index) {
+                        if (values.tipo == 'EMP') {
+                            $scope.lstEmpresas[index].descricaoTipo = 'Empresa';
+                        } else if (values.tipo == 'CLI') {
+                            $scope.lstEmpresas[index].descricaoTipo = 'Cliente';
+                        } else if (values.tipo == 'FOR') {
+                            $scope.lstEmpresas[index].descricaoTipo = 'Fornecedor';
+                        } else if (values.tipo == 'PRES') {
+                            $scope.lstEmpresas[index].descricaoTipo = 'Prestador de serviços';
+                        } else {
+                            $scope.lstEmpresas[index].descricaoTipo = 'Funcionário';
+                        }
+
+                        var strNome = values.nomeRazao.substring(0, 30);
+                        //values.nomeRazao = strNome.length >= 20 ? strNome + '..' : strNome;
+                        values.telefone = formatarTel(values.telefone);
+                        values.cnpj = formatarCNPJ(values.cnpj);
+                        values.cpf = formatarCPF(values.cpf);
+                    });
+                }
+                $loading.finish('load');
+            });
+        };
+
+        function formatarTel(tel) {
+            if (tel) {
+                const value = tel.toString().replace(/\D/g, '');
+
+                let foneFormatado = '';
+
+                if (value.length > 12) {
+                    foneFormatado = value.replace(/(\d{2})?(\d{2})?(\d{5})?(\d{4})/,
+                        '+$1 ($2) $3-$4');
+
+                } else if (value.length > 11) {
+                    foneFormatado = value.replace(/(\d{2})?(\d{2})?(\d{4})?(\d{4})/,
+                        '+$1 ($2) $3-$4');
+
+                } else if (value.length > 10) {
+                    foneFormatado = value.replace(/(\d{2})?(\d{5})?(\d{4})/, '($1) $2-$3');
+
+                } else if (value.length > 9) {
+                    foneFormatado = value.replace(/(\d{2})?(\d{4})?(\d{4})/, '($1) $2-$3');
+
+                } else if (value.length > 5) {
+                    foneFormatado = value.replace(/^(\d{2})?(\d{4})?(\d{0,4})/, '($1) $2-$3');
+
+                } else if (value.length > 1) {
+                    foneFormatado = value.replace(/^(\d{2})?(\d{0,5})/, '($1) $2');
+
+                } else {
+                    if (tel !== '') { foneFormatado = value.replace(/^(\d*)/, '($1'); }
+                }
+
+                return foneFormatado;
+            }
+        };
+
+        function formatarCPF(cpf) {
+
+            var ao_cpf = cpf;
+            var cpfValido = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}))$/;
+            if (cpfValido.test(ao_cpf) == false) {
+
+                ao_cpf = ao_cpf.replace(/\D/g, ""); //Remove tudo o que não é dígito
+
+                if (ao_cpf.length == 11) {
+                    ao_cpf = ao_cpf.replace(/(\d{3})(\d)/, "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+                    ao_cpf = ao_cpf.replace(/(\d{3})(\d)/, "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+                    //de novo (para o segundo bloco de números)
+                    ao_cpf = ao_cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); //Coloca um hífen entre o terceiro e o quarto dígitos
+                }
+            }
+
+            return ao_cpf;
+        }
+
+        function formatarCNPJ(cnpj) {
+            return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+        }
+
+        $scope.editar = function (empresa) {
+            $uibModal.open({
+                scope: $scope,
+                backdrop: false,
+                templateUrl: 'views/modal/Empresa/editar_empresa.html',
+                controller: function ($scope, $uibModalInstance, empresaSelected) {
+
+                    $scope.OnIniModal();
+
+                    var cliente = $scope.lstEmpresas.filter(function (params) {
+                        return params.id == empresaSelected.id;
+                    })
+
+                    $scope.objEmpresa = {};
+                    $scope.objEmpresa.id = cliente[0].id;
+                    $scope.objEmpresa.nomeRazao = cliente[0].nomeRazao;
+                    $scope.objEmpresa.dataSituacao = new Date(cliente[0].dataSituacao);
+                    $scope.objEmpresa.tipo = cliente[0].tipo;
+                    $scope.objEmpresa.cpf = cliente[0].cpf;
+                    $scope.objEmpresa.cnpj = cliente[0].cnpj;
+                    $scope.objEmpresa.email = cliente[0].email;
+                    $scope.objEmpresa.telefone = cliente[0].telefone;
+                    $scope.objEmpresa.uf = cliente[0].uf;
+                    $scope.objEmpresa.cep = cliente[0].cep;
+                    $scope.objEmpresa.endereco = cliente[0].endereco;
+                    $scope.objEmpresa.numero = cliente[0].numero != '' ? parseInt(cliente[0].numero) : null;
+                    $scope.objEmpresa.complemento = cliente[0].complemento;
+                    $scope.objEmpresa.bairro = cliente[0].bairro;
+                    $scope.objEmpresa.cidade = cliente[0].cidade;
+                    $scope.objEmpresa.ativo = true;
+
+                    $scope.alterar = function () {
+                        $loading.start('load');
+
+                        ClienteService.AtualizarEmpresa($scope.objCliente).then(function (response) {
+                            $loading.finish('load');
+
+                            if (response.success) {
+
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: response.message,
+                                    type: "success"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            $scope.OnInit();
+                                        }
+                                    });
+                            } else {
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Erro!",
+                                    text: response.message,
+                                    type: "error"
+                                });
+                            }
+                        }, function (error) {
+
+                        });
+                    };
+
+                    $scope.cancel = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+
+                },
+                windowClass: "animated fadeIn",
+                resolve: {
+                    empresaSelected: function () {
+                        return empresa;
                     }
                 }
             });
@@ -1363,7 +1609,7 @@ angular.module('EP')
 
             $scope.filtroEmpresaSelecionado = true;
 
-            
+
             var newObj = { codigoEmpresa: $localStorage.user.filtroEmpresa == undefined ? '' : ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5) };
 
             if (newObj.codigoEmpresa != '') {
@@ -1802,7 +2048,8 @@ angular.module('EP')
         $scope.labelFiltro = (filtroEmpresa == '' || filtroEmpresa == undefined) ? 'Filtro Empresa' : ("00000" + filtroEmpresa.id).slice(-5) + ' - ' + filtroEmpresa.nomeRazao;
         $scope.empresas = [];
 
-        ClienteService.ObterEmpresas().then(function (response) {
+        var newObj = { codigoEmpresa: '' };
+        ClienteService.ObterEmpresas(newObj).then(function (response) {
             angular.forEach(response.data, function (values, index) {
                 if (index == "$values") {
                     $scope.empresas = values;
@@ -2017,4 +2264,4 @@ angular.module('EP')
             ]);
 
     })
-    ;
+    ; 

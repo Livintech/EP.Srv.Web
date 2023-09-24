@@ -24,6 +24,16 @@
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('relatorios')}">
                     <li ui-sref-active="active"><a ui-sref="relatorios.clientesLista">Clientes</a></li>
+                    <li ui-sref-active="active" ng-show="user.perfil == 'Master'"><a ui-sref="relatorios.empresasLista">Empresas</a></li>
+                </ul>
+            </li>
+            <li ng-show="user.perfil == 'Master' || user.perfil == 'Administrador'" ng-class="{active: $state.includes('movimentacao')}">
+                <a href="#"><i class="fa fa-calculator"></i> <span class="nav-label">Movimento financeiro</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('movimentacao')}">
+                    <li ui-sref-active="active"><a ui-sref="movimentacao.faturamento">Faturamento</a></li>
+                    <li ui-sref-active="active"><a ui-sref="movimentacao.fluxoCaixa">Fluxo de caixa</a></li>
+                    <li ui-sref-active="active"><a ui-sref="movimentacao.contasPagar">Contas a pagar</a></li>
+                    <li ui-sref-active="active"><a ui-sref="movimentacao.contasReceber">Contas a receber</a></li>
                 </ul>
             </li>
             <li ng-show="user.perfil == 'Master' || user.perfil == 'Administrador'" ng-class="{active: $state.includes('administracao')}">
