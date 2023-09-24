@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uE7Zo3XyxwHEFZk+93779ydTDv30pmyAtldFmVfqpzc=",
+  "Hash": "ll5zm7Vkuv1mG9NzraivO5XlMNHyo589PvZhKkzxZog=",
   "Source": "EP.Srv.Web",
   "BasePath": "_content/EP.Srv.Web",
   "Mode": "Default",
@@ -28150,6 +28150,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\views\\modal\\Pagamento\\editar_pagamento.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\PlanoContas\\editar_plano_contas.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/modal/PlanoContas/editar_plano_contas.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\modal\\PlanoContas\\editar_plano_contas.html"
     },
     {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\ProdutoServico\\editar_produto_servico.html",

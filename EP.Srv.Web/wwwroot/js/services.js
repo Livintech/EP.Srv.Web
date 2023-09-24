@@ -264,6 +264,24 @@ angular.module('EP')
                     return response.data;
                 });
         }
+
+        this.ListarPlanoContas = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'PlanoDeContas/Listar', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        this.AtualizarPlanoContas = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'PlanoDeContas/Atualizar', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
     })
     .service('CentroCustoService', function ($http, constants, $localStorage) {
         var params = { headers: { 'Authorization': '' } };

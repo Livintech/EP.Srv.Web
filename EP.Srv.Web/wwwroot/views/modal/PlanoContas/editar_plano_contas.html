@@ -1,0 +1,50 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Plano de Contas</h4>
+        <small class="font-bold">Tela exclusiva para manutenção das categorias e naturezas.</small>
+    </div>
+    <form role="form" name="fatorForm">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-4" ng-show="tipoSelected">
+                    <label>Codigo Empresa</label>
+                    <input type="text" placeholder="Código Empresa" class="form-control form-control-modal" ng-model="objPlanoContas.codigoEmpresa" disabled>
+                    <label class="label-error" ng-show="erroCampoCodigoEmpresa">{{textoErroCodigoEmpresa}}</label>
+                </div>
+                <div class="col-lg-4">
+                    <label>Código</label>
+                    <input type="text" placeholder="Código Natureza" class="form-control form-control-modal" ng-model="objPlanoContas.codigo">
+                    <label class="label-error" ng-show="erroCampoCodigo">{{textoErroCodigo}}</label>
+                </div>
+                <div class="col-lg-4">
+                    <label>Tipo Natureza</label>
+                    <select class="form-control form-control-modal" ng-model="objPlanoContas.tipoNatureza" ng-change="changeTipo(objPlanoContas.tipoNatureza)">
+                        <option value="" selected>-- Selecione --</option>
+                        <option ng-show="objPlanoContas.codigoEmpresa == ''" value="Sintetica">Sintética</option>
+                        <option value="Analitica">Analítica</option>
+                    </select>
+                    <label class="label-error" ng-show="erroCampoTipo">{{textoErroTipo}}</label>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-8">
+                    <label>Natureza</label>
+                    <input type="text" class="form-control form-control-modal" placeholder="Descrição da natureza" ng-model="objPlanoContas.natureza" ng-change="change(objPlanoContas.natureza)">
+                    <label class="label-error" ng-show="erroCampo">{{textoErro}}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 form-check form-switch" style="padding-top: 50px;">
+                    <input id="ckbAtivo" class="form-check-input" type="checkbox" ng-model="objPlanoContas.ativo" ng-checked="objPlanoContas.ativo">
+                    <label class="form-check-label form-control-modal" for="ckbAtivo" style="font-size: 1.5rem; font-weight: 600;">Ativo</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="cancel()">Fechar</button>
+            <button type="button" class="btn btn-primary" ng-click="alterar()">alterar</button>
+        </div>
+    </form>
+</div>

@@ -895,6 +895,9 @@ angular.module('EP')
 
         $scope.OnInit = function () {
             $loading.start('load');
+
+            $scope.perfil = $localStorage.user?.perfil;
+
             var obj = {
                 codigoEmpresa: $localStorage.user.filtroEmpresa == undefined ? '' : ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5)
             };
@@ -1138,7 +1141,7 @@ angular.module('EP')
                 return '';
             };
         };
-    })    
+    })
     .controller('LoginCtrl', function ($scope, toaster, AuthService, ClienteService, $loading, $localStorage, $timeout) {
         $scope.OnInit = function () {
             $scope.tipo = "PF";
@@ -1346,6 +1349,9 @@ angular.module('EP')
     })
     .controller('ProdutosServicosCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, ProdutosServicosService, $uibModal, $localStorage) {
         $scope.OnInit = function () {
+
+            $loading.start('load');
+
             $scope.getProdutosServicos = [];
             $scope.obj = {
                 empresaId: '',
@@ -1357,29 +1363,29 @@ angular.module('EP')
 
             $scope.filtroEmpresaSelecionado = true;
 
-            if ($localStorage.user.filtroEmpresa != undefined) {
-                $loading.start('load');
+            
+            var newObj = { codigoEmpresa: $localStorage.user.filtroEmpresa == undefined ? '' : ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5) };
 
-                //$scope.filtroEmpresaSelecionado = false;
+            if (newObj.codigoEmpresa != '') {
                 $scope.obj.empresaId = $localStorage.user.filtroEmpresa.id.toString();
-                $scope.obj.codigoEmpresa = ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5);
-
-                ProdutosServicosService.ListarProdutosServicos($scope.obj)
-                    .then(function (response) {
-                        $loading.finish('load');
-
-                        var data = response;
-                        if (data.success) {
-                            angular.forEach(data.data, function (value, index) {
-                                if (index == '$values') {
-                                    $scope.getProdutosServicos = value;
-                                }
-                            });
-                        }
-                    }, function (error) {
-                        console.log("Erro " + JSON.stringify(error));
-                    });
+                $scope.obj.codigoEmpresa = newObj.codigoEmpresa;
             }
+
+            ProdutosServicosService.ListarProdutosServicos($scope.obj)
+                .then(function (response) {
+                    $loading.finish('load');
+
+                    var data = response;
+                    if (data.success) {
+                        angular.forEach(data.data, function (value, index) {
+                            if (index == '$values') {
+                                $scope.getProdutosServicos = value;
+                            }
+                        });
+                    }
+                }, function (error) {
+                    console.log("Erro " + JSON.stringify(error));
+                });
         };
 
         $scope.limpar = function () {
@@ -1518,11 +1524,245 @@ angular.module('EP')
                     }
                 }
             ]);
+    })
+    .controller('PlanoContasCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, PlanoContasService, $uibModal, $localStorage) {
+        $scope.OnInit = function () {
 
-        //$(function () {
-        //    $('[type="button"]').tooltip();
-        //    $('[type="button"]').title = 'Teste ToolTip';
-        //});
+            $loading.start('load');
+
+            $scope.listaPlanoContas = [];
+            $scope.obj = {
+                natureza: '',
+                codigo: '',
+                tipoNatureza: '',
+                codigoEmpresa: ''
+            };
+
+            $scope.tipoSelected = false;
+            $scope.erroCampoCodigoEmpresa = false;
+            $scope.erroCampoCodigo = false;
+            $scope.erroCampoTipo = false;
+            $scope.erroCampo = false;
+            $scope.textoErroCodigoEmpresa = '';
+            $scope.textoErroCodigo = '';
+            $scope.textoErroTipo = '';
+            $scope.textoErro = '';
+
+            $scope.filtroEmpresaSelecionado = true;
+            $scope.perfil = $localStorage.user?.perfil;
+
+            var newObj = { codigoEmpresa: $localStorage.user.filtroEmpresa == undefined ? '' : ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5) };
+
+            if (newObj.codigoEmpresa != '') {
+                $scope.tipoSelected = true;
+                $scope.obj.codigoEmpresa = newObj.codigoEmpresa;
+            }
+
+            PlanoContasService.ListarPlanoContas(newObj)
+                .then(function (response) {
+                    $loading.finish('load');
+
+                    var data = response;
+                    if (data.success) {
+                        angular.forEach(data.data, function (value, index) {
+                            if (index == '$values') {
+                                $scope.listaPlanoContas = value;
+                            }
+                        });
+                    }
+                }, function (error) {
+                    $loading.finish('load');
+                    console.log("Erro " + JSON.stringify(error));
+                    SweetAlert.swal({
+                        title: "Erro!",
+                        text: "Erro processar sua requisição.",
+                        type: "error"
+                    });
+                });
+        };
+
+        $scope.limpar = function () {
+            $scope.OnInit();
+        };
+
+        $scope.gravar = function () {
+            $scope.erroCampoCodigoEmpresa = false;
+            $scope.erroCampoCodigo = false;
+            $scope.erroCampoTipo = false;
+            $scope.erroCampo = false;
+            $scope.textoErroCodigoEmpresa = '';
+            $scope.textoErroCodigo = '';
+            $scope.textoErroTipo = '';
+            $scope.textoErro = '';
+
+            if ($scope.obj.natureza == '') {
+                $scope.erroCampo = true;
+                $scope.textoErro = '* Natureza obrigatório';
+                return;
+            } else if ($scope.obj.codigo == '') {
+                $scope.erroCampoCodigo = true;
+                $scope.textoErroCodigo = '* Código obrigatório';
+                return;
+            } else {
+                $loading.start('load');
+                $scope.erroCampoCodigoEmpresa = false;
+                $scope.erroCampoCodigo = false;
+                $scope.erroCampoTipo = false;
+                $scope.erroCampo = false;
+                $scope.textoErroCodigoEmpresa = '';
+                $scope.textoErroCodigo = '';
+                $scope.textoErroTipo = '';
+                $scope.textoErro = '';
+
+                PlanoContasService.GravarPlanoContas($scope.obj)
+                    .then(function (response) {
+                        $loading.finish('load');
+
+                        if (response.success) {
+
+                            SweetAlert.swal({
+                                title: "Sucesso!",
+                                text: response.message,
+                                type: "success"
+                            },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $scope.OnInit();
+                                    }
+                                });
+                        } else {
+                            SweetAlert.swal({
+                                title: "Erro!",
+                                text: response.message,
+                                type: "error"
+                            });
+                        }
+                    }, function (error) {
+                        console.log("Erro " + JSON.stringify(error));
+                    });
+            }
+        };
+
+        $scope.OnInit();
+
+        $scope.editar = function (data) {
+            $uibModal.open({
+                scope: $scope,
+                backdrop: false,
+                templateUrl: 'views/modal/PlanoContas/editar_plano_contas.html',
+                controller: function ($scope, $uibModalInstance, planoContasSelected, $timeout) {
+
+                    if (planoContasSelected.tipoNatureza == 'Sintetica') {
+                        $scope.tipoSelected = false;
+                    } else {
+                        $scope.tipoSelected = true;
+                    }
+
+                    $scope.objPlanoContas = {};
+                    $scope.objPlanoContas.id = planoContasSelected.id;
+                    $scope.objPlanoContas.codigo = planoContasSelected.codigo;
+                    $scope.objPlanoContas.natureza = planoContasSelected.natureza;
+                    $scope.objPlanoContas.tipoNatureza = planoContasSelected.tipoNatureza;
+                    $scope.objPlanoContas.codigoEmpresa = planoContasSelected.codigoEmpresa;
+                    $scope.objPlanoContas.ativo = planoContasSelected.ativo;
+
+                    $scope.alterar = function () {
+                        $loading.start('load');
+
+                        PlanoContasService.AtualizarPlanoContas($scope.objPlanoContas).then(function (response) {
+                            $loading.finish('load');
+
+                            if (response.success) {
+
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Sucesso!",
+                                    text: response.message,
+                                    type: "success"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            $scope.OnInit();
+                                        }
+                                    });
+                            } else {
+                                $uibModalInstance.dismiss('dimiss');
+                                SweetAlert.swal({
+                                    title: "Erro!",
+                                    text: response.message,
+                                    type: "error"
+                                });
+                            }
+                        }, function (error) {
+
+                        });
+                    }
+
+                    $scope.cancel = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+                },
+                windowClass: "animated fadeIn",
+                resolve: {
+                    planoContasSelected: function () {
+                        return data;
+                    }
+                }
+            });
+        }
+
+        $scope.change = function (texto) {
+            if (texto.length >= 3 &&
+                ($localStorage.user.filtroEmpresa != undefined
+                    || $scope.obj.tipoNatureza != 'Sintetica'
+                    || $scope.perfil == 'Master')) {
+                $scope.erroCampoCodigoEmpresa = false;
+                $scope.erroCampoCodigo = false;
+                $scope.erroCampoTipo = false;
+                $scope.erroCampo = false;
+                $scope.textoErroCodigoEmpresa = '';
+                $scope.textoErroCodigo = '';
+                $scope.textoErroTipo = '';
+                $scope.textoErro = '';
+                $scope.filtroEmpresaSelecionado = false;
+            } else {
+                $scope.filtroEmpresaSelecionado = true;
+            }
+        }
+
+        $scope.changeTipo = function (tipo) {
+            if (tipo == 'Analitica') {
+                $scope.tipoSelected = true;
+                if ($scope.obj.codigoEmpresa == '') {
+                    $scope.erroCampoCodigoEmpresa = true;
+                    $scope.textoErroCodigoEmpresa = '* Este tipo de natureza requer uma empresa selecionada.';
+                } else {
+
+                }
+            } else {
+                $scope.tipoSelected = false;
+            }
+        };
+
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'Usuarios_' + Date.now },
+
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
     })
     .controller('RegisterCtrl', function ($scope, toaster, $loading, AuthService, $q, $timeout) {
 

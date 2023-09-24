@@ -6617,6 +6617,10 @@
       "PackagePath": "staticwebassets\\views\\modal\\Pagamento\\editar_pagamento.html"
     },
     {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\PlanoContas\\editar_plano_contas.html",
+      "PackagePath": "staticwebassets\\views\\modal\\PlanoContas\\editar_plano_contas.html"
+    },
+    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\ProdutoServico\\editar_produto_servico.html",
       "PackagePath": "staticwebassets\\views\\modal\\ProdutoServico\\editar_produto_servico.html"
     },
