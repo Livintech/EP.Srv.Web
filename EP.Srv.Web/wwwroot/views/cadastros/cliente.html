@@ -36,6 +36,7 @@
                                 <div class="col-lg-2">
                                     <label>Codigo Empresa</label>
                                     <input type="text" id="descricao" name="descricao" class="form-control form-control-modal" ng-model="obj.codigoEmpresa" disabled>
+                                    <label class="label-error" ng-show="erroCampoCodigoEmpresa">{{textoErroCodigoEmpresa}}</label>
                                 </div>
                                 <div class="col-lg-6">
                                     <label>Nome / Razão Social</label>
@@ -111,7 +112,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" ng-show="value == null" ng-click="Incluir()">Gravar</button>
+                            <button type="button" class="btn btn-primary" ng-show="value == null" ng-click="Incluir()" ng-disabled="erroCampoCodigoEmpresa">Gravar</button>
                         </div>
                     </form>
                 </div>

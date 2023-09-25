@@ -432,7 +432,7 @@ angular.module('EP')
 
         $scope.OnInit();
     })
-    .controller('ClienteCtrl', function ($scope, SweetAlert, ClienteService, $uibModal, $localStorage, $loading) {
+    .controller('ClienteCtrl', function ($scope, SweetAlert, ClienteService, EmpresaService, $uibModal, $localStorage, $loading, $q) {
 
         $scope.obj = {
             codigoEmpresa: '',
@@ -454,6 +454,8 @@ angular.module('EP')
         $scope.erroCpf = false;
         $scope.erroCnpj = false;
         $scope.erroEmail = false;
+        $scope.erroCampoCodigoEmpresa = false;
+        $scope.textoErroCodigoEmpresa = '';
         $scope.perfil = $localStorage.user.perfil;
 
         $scope.dateOptions = {
@@ -564,10 +566,19 @@ angular.module('EP')
                 });
             } else {
                 console.log(JSON.stringify($scope.obj));
-                ClienteService.CadastrarCliente($scope.obj)
+
+                var cadastro = null;
+
+                if ($scope.obj.tipo == 'EMP') {
+                    cadastro = EmpresaService.CadastrarEmpresa($scope.obj);
+                } else {
+                    cadastro = ClienteService.CadastrarCliente($scope.obj);
+                }
+
+                $q.all([cadastro])
                     .then(function (response) {
                         $loading.finish('load');
-                        var data = response;
+                        var data = response[0];
 
                         if (data.success) {
                             if (data.data.tipo == "EMP") {
@@ -685,10 +696,17 @@ angular.module('EP')
 
         $scope.change = function () {
             if ($scope.obj.tipo != "EMP") {
-                var codigoEmp = $localStorage.user.filtroEmpresa.id
-                $scope.obj.codigoEmpresa = ("00000" + codigoEmp).slice(-5);
+                if ($localStorage.user.filtroEmpresa != undefined) {
+                    var codigoEmp = $localStorage.user.filtroEmpresa.id
+                    $scope.obj.codigoEmpresa = ("00000" + codigoEmp).slice(-5);
+                } else {
+                    $scope.erroCampoCodigoEmpresa = true;
+                    $scope.textoErroCodigoEmpresa = '* O campo "TIPO", requer uma empresa selecionada.';
+                }
             } else {
                 $scope.obj.codigoEmpresa = "";
+                $scope.textoErroCodigoEmpresa = '';
+                $scope.erroCampoCodigoEmpresa = false;
             }
         };
     })
@@ -1138,7 +1156,7 @@ angular.module('EP')
             };
         };
     })
-    .controller('ListaEmpresasCtrl', function ($scope, ClienteService, $localStorage, $loading, DTOptionsBuilder, $uibModal, SweetAlert) {
+    .controller('ListaEmpresasCtrl', function ($scope, EmpresaService, $localStorage, $loading, DTOptionsBuilder, $uibModal, SweetAlert) {
 
         $scope.OnInit = function () {
             $loading.start('load');
@@ -1149,7 +1167,7 @@ angular.module('EP')
                 codigoEmpresa: $localStorage.user.filtroEmpresa == undefined ? '' : ("00000" + $localStorage.user.filtroEmpresa.id).slice(-5)
             };
 
-            ClienteService.ObterEmpresas(obj).then(function (response) {
+            EmpresaService.ObterEmpresas(obj).then(function (response) {
                 var objResponse = response;
                 if (objResponse.success) {
                     $scope.lstEmpresas = objResponse.data.$values;
@@ -1268,7 +1286,7 @@ angular.module('EP')
                     $scope.alterar = function () {
                         $loading.start('load');
 
-                        ClienteService.AtualizarEmpresa($scope.objCliente).then(function (response) {
+                        EmpresaService.AtualizarEmpresa($scope.objEmpresa).then(function (response) {
                             $loading.finish('load');
 
                             if (response.success) {
@@ -1293,7 +1311,13 @@ angular.module('EP')
                                 });
                             }
                         }, function (error) {
-
+                            $loading.finish('load');
+                            console.log("ERRO: " + JSON.stringify(error));
+                            SweetAlert.swal({
+                                title: "Erro!",
+                                text: "Erro solicitar sua requisição.",
+                                type: "error"
+                            });
                         });
                     };
 
@@ -1388,7 +1412,7 @@ angular.module('EP')
             };
         };
     })
-    .controller('LoginCtrl', function ($scope, toaster, AuthService, ClienteService, $loading, $localStorage, $timeout) {
+    .controller('LoginCtrl', function ($scope, toaster, AuthService, EmpresaService, $loading, $localStorage, $timeout) {
         $scope.OnInit = function () {
             $scope.tipo = "PF";
             $localStorage.$reset();
@@ -1474,7 +1498,7 @@ angular.module('EP')
 
                         if (response.data.perfil != 'Master') {
 
-                            ClienteService.ObterEmpresas().then(function (resp) {
+                            EmpresaService.ObterEmpresas().then(function (resp) {
                                 if (resp.success) {
 
                                     angular.forEach(resp.data.$values, function (value, index) {
@@ -2036,7 +2060,7 @@ angular.module('EP')
             AuthService.cadastrar(user);
         }
     })
-    .controller('topNavCtrl', function ($scope, $rootScope, $localStorage, $uibModal, SweetAlert, ClienteService) {
+    .controller('topNavCtrl', function ($scope, $rootScope, $localStorage, $uibModal, SweetAlert, EmpresaService) {
 
         var filtroEmpresa = $localStorage.user.filtroEmpresa;
         var perfil = $localStorage.user.perfil;
@@ -2049,7 +2073,7 @@ angular.module('EP')
         $scope.empresas = [];
 
         var newObj = { codigoEmpresa: '' };
-        ClienteService.ObterEmpresas(newObj).then(function (response) {
+        EmpresaService.ObterEmpresas(newObj).then(function (response) {
             angular.forEach(response.data, function (values, index) {
                 if (index == "$values") {
                     $scope.empresas = values;

@@ -121,19 +121,6 @@ angular.module('EP')
                 });
         }
 
-        this.ObterEmpresas = function (objJson) {
-            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
-
-            return $http.post(constants.UrlClienteApi + 'Cliente/ListarEmpresas', objJson, params)
-                .then(function (response) {
-                    return response.data;
-                }, function (error) {
-                    angular.forEach(error.data, function (value, index) {
-                        return value;
-                    });
-                });
-        }
-
         this.ObterCLientes = function (objJson) {
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
 
@@ -159,11 +146,15 @@ angular.module('EP')
                     });
                 });
         }
+    })
+    .service('EmpresaService', function ($http, constants, $localStorage) {
 
-        this.AtualizarEmpresa = function (objJson) {
+        var params = { headers: { 'Authorization': '' } };
+
+        this.CadastrarEmpresa = function (objJson) {
             params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
 
-            return $http.post(constants.UrlClienteApi + 'Cliente/AtualizarEmpresa', objJson, params)
+            return $http.post(constants.UrlClienteApi + 'Empresa/CadastrarEmpresa', objJson, params)
                 .then(function (response) {
                     return response.data;
                 }, function (error) {
@@ -173,6 +164,27 @@ angular.module('EP')
                 });
         }
 
+        this.ObterEmpresas = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'Empresa/ListarEmpresas', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                }, function (error) {
+                    angular.forEach(error.data, function (value, index) {
+                        return value;
+                    });
+                });
+        }
+
+        this.AtualizarEmpresa = function (objJson) {
+            params.headers.Authorization = 'Bearer ' + $localStorage.user.acessToken;
+
+            return $http.post(constants.UrlClienteApi + 'Empresa/AtualizarEmpresa', objJson, params)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
     })
     .service('BancoService', function ($http, constants, $localStorage) {
         var params = { headers: { 'Authorization': '' } };
