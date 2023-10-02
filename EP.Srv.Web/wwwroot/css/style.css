@@ -814,7 +814,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     margin-bottom: 5px;
 }
 
-.ibox-bottom{
+.ibox-bottom {
     margin-bottom: 0 !important;
 }
 
@@ -10425,6 +10425,10 @@ input[type="radio"] {
     border-bottom-color: red;
 }
 
+    .form-field-invalid:focus {
+        border-bottom-color: red;
+    }
+
 .label-error {
     font-weight: 500;
     color: red;
@@ -10486,6 +10490,7 @@ div.dataTables_wrapper div.dataTables_length select {
     margin-top: 25px;
     margin-left: 20px;
 }
+
 .btn-row-cancel {
     margin-top: 25px;
     margin-left: 105px;

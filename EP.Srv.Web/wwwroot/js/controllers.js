@@ -2034,31 +2034,99 @@ angular.module('EP')
                 }
             ]);
     })
-    .controller('RegisterCtrl', function ($scope, toaster, $loading, AuthService, $q, $timeout) {
+    .controller('RegisterCtrl', function ($scope, toaster, $loading, AuthService, UsuarioService, $q, $timeout) {
 
-        $scope.user = {
-            CpfCnpj: "",
-            Email: "",
-            Senha: "",
-            SenhaConfirmacao: ""
+        OnInit = function () {
+            $scope.user = {
+                CpfCnpj: "",
+                Email: "",
+                Senha: "",
+                SenhaConfirmacao: ""
+            };
+
+            $scope.tipos = [
+                { tipo: "PF", nome: "Pessoa Fisica" },
+                //{ tipo: "PJ", nome: "Pessoa Juridica" }
+            ];
+
+            $scope.tipoSelected = false;
+            $scope.achouCadastro = false;
+            $scope.emailValido = true;
+        };
+        
+        $scope.changeSelect = function (tipo) {
+            $scope.achouCadastro = false;
+            $scope.emailValido = true;
+            $scope.tipoSelected = (tipo == "PF" || tipo == "PJ") ? true : false;
         };
 
-        $onInit = function () {
-            $scope.tipo = "PF";
-        };
-        $scope.tipos = [
-            { tipo: "PF", nome: "Pessoa Fisica" },
-            { tipo: "PJ", nome: "Pessoa Juridica" }
-        ]
-
-        $scope.RedefinirUsuario = function (user) {
+        $scope.RedefinirUsuario = function () {
             $loading.start('load');
+            var user = $scope.user;
+
             AuthService.RedefinirSenha(user);
+        };
+
+        $scope.BuscarCadastro = function () {
+            
+            $scope.emailValido = true;
+            var email = $scope.user.Email;
+
+            angular.forEach($scope.loginForm?.$error, function (value, index) {
+                if (index == "email") {
+                    $scope.emailValido = !value[0].$invalid;
+                } else {
+                    $scope.emailValido = true;
+                }
+            });
+
+            if ($scope.emailValido) {
+                $loading.start('load');
+
+                UsuarioService.GetUserEmail(email)
+                    .then(function (response) {
+                        $loading.finish('load');
+                        var data = response.data;
+                        if (data.success) {
+                            $scope.achouCadastro = true;
+                            $scope.user.Senha = "";
+                            $scope.user.SenhaConfirmacao = "";
+                            $scope.user.CpfCnpj = data.data.cpfCnpj;
+                        } else {
+                            toaster.pop({
+                                type: 'error',
+                                title: 'Erro',
+                                body: data.message,
+                                showCloseButton: true,
+                                timeout: 5000
+                            });
+                        }
+                    }, function (error) {
+                        $loading.finish('load');
+                        toaster.pop({
+                            type: 'error',
+                            title: 'Erro',
+                            body: "Erro ao solicitar sua requisição.",
+                            showCloseButton: true,
+                            timeout: 5000
+                        });
+                    });
+            } else {
+                toaster.pop({
+                    type: 'error',
+                    title: 'E-Mail',
+                    body: "Campo E-Mail inválido.",
+                    showCloseButton: true,
+                    timeout: 5000
+                });
+            }
         }
 
         $scope.CriarUsuario = function (user) {
             AuthService.cadastrar(user);
-        }
+        };
+
+        OnInit();
     })
     .controller('topNavCtrl', function ($scope, $rootScope, $localStorage, $uibModal, SweetAlert, EmpresaService) {
 

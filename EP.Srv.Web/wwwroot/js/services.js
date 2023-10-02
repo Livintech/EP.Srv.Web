@@ -103,6 +103,13 @@ angular.module('EP')
                 });
         }
 
+        this.GetUserEmail = function (objEmail) {
+            return $http.post(constants.UrlAuthApi + 'User/GetUserForEmail', { emailUser: objEmail } , params)
+                .then(function (response) {
+                    return response
+                });
+        }
+
     })
     .service('ClienteService', function ($http, constants, $localStorage) {
 

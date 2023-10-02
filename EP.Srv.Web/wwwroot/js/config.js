@@ -73,7 +73,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('forgot_password', {
             url: "/forgot",
-            templateUrl: "views/forgot_password.html",
+            templateUrl: "views/usuario/forgot_password.html",
             data: { pageTitle: 'Login2', specialClass: 'gray-bg' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -89,7 +89,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('signin_up', {
             url: "/signinup",
-            templateUrl: "views/signin_up.html",
+            templateUrl: "views/usuario/signin_up.html",
             data: { pageTitle: 'Login2', specialClass: 'gray-bg' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {

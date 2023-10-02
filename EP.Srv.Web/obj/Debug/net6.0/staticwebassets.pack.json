@@ -6645,8 +6645,20 @@
       "PackagePath": "staticwebassets\\views\\modal\\modal_base.html"
     },
     {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\contasPagar.html",
+      "PackagePath": "staticwebassets\\views\\movimentacao\\contasPagar.html"
+    },
+    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\contasReceber.html",
       "PackagePath": "staticwebassets\\views\\movimentacao\\contasReceber.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\faturamento.html",
+      "PackagePath": "staticwebassets\\views\\movimentacao\\faturamento.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\fluxoCaixa.html",
+      "PackagePath": "staticwebassets\\views\\movimentacao\\fluxoCaixa.html"
     },
     {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\relatorios\\clientesLista.html",

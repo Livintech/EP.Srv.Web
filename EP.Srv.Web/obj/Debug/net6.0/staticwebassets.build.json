@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MKR7AFTY1WuqeShwZO7mrn/cJrlMRWcTI5tV6rBIbGs=",
+  "Hash": "1LN5QN6ClQG5OC75pdnitbgy1UMKWyFv5+SibdPxRIE=",
   "Source": "EP.Srv.Web",
   "BasePath": "_content/EP.Srv.Web",
   "Mode": "Default",
@@ -28254,6 +28254,23 @@
       "OriginalItemSpec": "wwwroot\\views\\modal\\Usuario\\incluir_usuarios.html"
     },
     {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\contasPagar.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/movimentacao/contasPagar.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\movimentacao\\contasPagar.html"
+    },
+    {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\contasReceber.html",
       "SourceId": "EP.Srv.Web",
       "SourceType": "Discovered",
@@ -28269,6 +28286,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\views\\movimentacao\\contasReceber.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\faturamento.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/movimentacao/faturamento.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\movimentacao\\faturamento.html"
+    },
+    {
+      "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\movimentacao\\fluxoCaixa.html",
+      "SourceId": "EP.Srv.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\",
+      "BasePath": "_content/EP.Srv.Web",
+      "RelativePath": "views/movimentacao/fluxoCaixa.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\movimentacao\\fluxoCaixa.html"
     },
     {
       "Identity": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\relatorios\\clientesLista.html",
