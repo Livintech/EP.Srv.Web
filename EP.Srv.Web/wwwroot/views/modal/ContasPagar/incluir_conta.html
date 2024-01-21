@@ -1,0 +1,62 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Cadastro</h4>
+        <small class="font-bold">Tela exclusiva para cadastro de títulos.</small>
+    </div>
+    <form role="form" name="fatorForm">
+        <div class="modal-body">
+            <div class="row mb-2">
+                <div class="col-lg-4">
+                    <label>Data emissão:</label>
+                    <input type="datetime" class="form-control form-control-modal" placeholder="Data emissão" ng-model="cadastro.dtEmissao" uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar" is-open="popup1.opened" datepicker-options="dateOptions" ng-click="open1()">
+                </div>
+                <div class="col-lg-4">
+                    <label>Data vencimento:</label>
+                    <input type="datetime" class="form-control form-control-modal" placeholder="Data lançamento" ng-model="cadastro.dtVencimento" uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar" is-open="popup2.opened" datepicker-options="dateOptions" ng-click="open2()">
+                </div>
+                <div class="col-lg-4">
+                    <label>Número do título:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="cadastro.numeroTitulo" placeholder="Número do título" />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-8">
+                    <label>Nome:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="cadastro.nome" placeholder="Nome" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Categoria:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="cadastro.categoria" placeholder="Categoria" />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-4">
+                    <label>Valor:</label>
+                    <input class="form-control form-control-modal" type="text" format="currency" ng-model="cadastro.valor" placeholder="Valor" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Retenção impostos:</label>
+                    <input class="form-control form-control-modal" type="text" format="currency" ng-model="cadastro.retencaoImpostos" placeholder="Valor" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Centro de custo:</label>
+                    <select class="form-control form-control-modal" ng-model="cadastro.centroCusto" ng-change="change()">
+                        <option value="" selected>-- Selecione --</option>
+                        <option ng-repeat="cnt in listaCentroCustos" value="{{cnt.descricao}}">{{cnt.descricao}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-12">
+                    <label>Observação:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="cadastro.observacao" placeholder="Observação" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="cadastrar()">Salvar</button>
+            <button type="button" class="btn btn-primary" ng-click="limpar()">Limpar</button>
+        </div>
+    </form>
+</div>

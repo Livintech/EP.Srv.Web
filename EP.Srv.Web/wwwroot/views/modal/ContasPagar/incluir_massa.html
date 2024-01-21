@@ -1,0 +1,84 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Inclusão em massa</h4>
+        <small class="font-bold">Tela exclusiva para cadastro de títulos em massa.</small>
+    </div>
+    <form role="form" name="fatorForm">
+        <div class="modal-body">
+            <div class="row mb-2">
+                <div class="col-lg-4">
+                    <label>Data emissão:</label>
+                    <input type="datetime" class="form-control form-control-modal" placeholder="Data emissão" ng-model="cadastroEmMassa.dtEmissao" uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar" is-open="popup1.opened" datepicker-options="dateOptions" ng-click="open1()">
+                </div>
+                <div class="col-lg-4">
+                    <label>Data vencimento:</label>
+                    <input type="datetime" class="form-control form-control-modal" placeholder="Data lançamento" ng-model="cadastroEmMassa.dtVencimento" uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar" is-open="popup2.opened" datepicker-options="dateOptions" ng-click="open2()">
+                </div>
+                <div class="col-lg-4">
+                    <label>Número do título:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="cadastroEmMassa.numeroTitulo" placeholder="Número do título" />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-8">
+                    <label>Nome:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="cadastroEmMassa.nome" placeholder="Nome" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Categoria:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="cadastroEmMassa.categoria" placeholder="Categoria" />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-4">
+                    <label>Valor:</label>
+                    <input class="form-control form-control-modal" type="text" format="currency" ng-model="cadastroEmMassa.valor" placeholder="Valor" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Retenção impostos:</label>
+                    <input class="form-control form-control-modal" type="text" format="currency" ng-model="cadastroEmMassa.retencaoImpostos" placeholder="Valor" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Centro de custo:</label>
+                    <select class="form-control form-control-modal" ng-model="cadastroEmMassa.centroCusto">
+                        <option value="" selected>-- Selecione --</option>
+                        <option ng-repeat="cnt in listaCentroCustos" value="{{cnt.descricao}}">{{cnt.descricao}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-12">
+                    <label>Observação:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="cadastroEmMassa.observacao" placeholder="Observação" />
+                </div>
+            </div>
+            <br />
+            <div class="row mb-2" style="text-align: center;">
+                <small class="font-bold">Detalhes das demais parcelas</small>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-3">
+                    <label>Qtd parcelas:</label>
+                    <input class="form-control form-control-modal" type="number" ng-model="cadastroEmMassa.qtParcelas" placeholder="Qtd parcelas" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;" min="0"/>
+                </div>
+                <div class="col-lg-3">
+                    <label>Valor parcelas:</label>
+                    <input class="form-control form-control-modal" type="text" format="currency" ng-model="cadastroEmMassa.valorParcela" placeholder="Valor parcelas" />
+                </div>
+                <div class="col-lg-3">
+                    <label>Todo dia:</label>
+                    <input class="form-control form-control-modal" type="number" ng-model="cadastroEmMassa.todoDia" placeholder="Todo dia" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" min="0"  onchange="validValue({{cadastroEmMassa.todoDia}})"/>
+                </div>
+                <div class="col-lg-3">
+                    <label>A cada:</label>
+                    <input class="form-control form-control-modal" type="number" ng-model="cadastroEmMassa.cadaDia" placeholder="A cada X dias" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" min="0" ng-change="changeDiaSelecionado()" ng-disabled="campoDesabilitado"/>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="cadastrar()">Salvar</button>
+            <button type="button" class="btn btn-primary" ng-click="limpar()">Limpar</button>
+        </div>
+    </form>
+</div>

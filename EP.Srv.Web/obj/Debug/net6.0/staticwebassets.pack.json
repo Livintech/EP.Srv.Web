@@ -6617,6 +6617,18 @@
       "PackagePath": "staticwebassets\\views\\modal\\Cliente\\editar_cliente.html"
     },
     {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\ContasPagar\\editar_conta.html",
+      "PackagePath": "staticwebassets\\views\\modal\\ContasPagar\\editar_conta.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\ContasPagar\\filtros.html",
+      "PackagePath": "staticwebassets\\views\\modal\\ContasPagar\\filtros.html"
+    },
+    {
+      "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\ContasPagar\\incluir_conta.html",
+      "PackagePath": "staticwebassets\\views\\modal\\ContasPagar\\incluir_conta.html"
+    },
+    {
       "Id": "C:\\Dev\\Pessoal\\EfeitoPetalo\\EP.Srv.Web\\EP.Srv.Web\\wwwroot\\views\\modal\\Empresa\\editar_empresa.html",
       "PackagePath": "staticwebassets\\views\\modal\\Empresa\\editar_empresa.html"
     },

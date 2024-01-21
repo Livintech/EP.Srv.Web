@@ -541,7 +541,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         .state('administracao.usuarios', {
             url: "/usuarios",
-            templateUrl: "views/usuarios.html",
+            templateUrl: "views/usuario/usuarios.html",
             data: { pageTitle: 'Sistemas' },
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {

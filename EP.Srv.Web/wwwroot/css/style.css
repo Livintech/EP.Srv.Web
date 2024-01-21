@@ -10459,6 +10459,21 @@ div.dataTables_wrapper div.dataTables_length select {
         color: white !important;
     }
 
+.btn-primary-tools {
+    background-color: #ffffff;
+    border-color: #012245;
+    color: #012245;
+    width: 100% !important;
+    /*padding: 13px !important;*/
+    /*margin-bottom: 15px !important;*/
+}
+
+    .btn-primary-tools:hover {
+        background-color: #869177 !important;
+        border-color: #869177 !important;
+        color: white !important;
+    }
+
 .makeFilterDropdownBtn {
     border: none;
     background-color: #f3f3f4;
@@ -10503,6 +10518,10 @@ div.dataTables_wrapper div.dataTables_length select {
 
 .modal-cliente-width {
     width: 75% !important;
+}
+
+.modal-cadastro-width {
+    width: 50% !important;
 }
 
 @keyframes effect {

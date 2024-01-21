@@ -713,6 +713,281 @@ angular.module('EP')
     .controller('ConfigCtrl', function ($scope, $localStorage) {
         $scope.user = $localStorage?.user;
     })
+    .controller('ContasReceberCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, FormaPagamentoService, $localStorage, $uibModal) {
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'ContasReceber_' + Date.now },
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
+    })
+    .controller('ContasPagarCtrl', function ($scope, SweetAlert, DTOptionsBuilder, $loading, FormaPagamentoService, $localStorage, $uibModal) {
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withDOM('<"html5buttons"B>lTfgitp')
+            .withButtons([
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'ContasReceber_' + Date.now },
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]);
+
+        $scope.dateOptions = {
+            formatYear: 'yy',
+            maxDate: new Date(),
+            minDate: new Date(),
+            startingDay: 1
+        };
+
+        $scope.inlineOptions = {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        };
+
+        $scope.format = 'dd/MM/yyyy'
+
+        $scope.toggleMin = function () {
+            $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+            $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+            $scope.dateOptions.currentText = false;
+        };
+
+        $scope.toggleMin();
+
+        $scope.open1 = function () {
+            $scope.popup1.opened = true;
+        };
+
+        $scope.open2 = function () {
+            $scope.popup2.opened = true;
+        };
+
+        $scope.popup1 = {
+            opened: false
+        };
+
+        $scope.popup2 = {
+            opened: false
+        };
+
+        function getDayClass(data) {
+            var date = data.date,
+                mode = data.mode;
+            if (mode === 'day') {
+                var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+
+                for (var i = 0; i < $scope.events.length; i++) {
+                    var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
+
+                    if (dayToCheck === currentDay) {
+                        return $scope.events[i].status;
+                    }
+                }
+            }
+
+            return '';
+        };
+
+        $scope.AbrirModal = function (funcao) {
+            switch (funcao) {
+                case "BaixaManual":
+                    $uibModal.open({
+                        scope: $scope,
+                        backdrop: false,
+                        templateUrl: 'views/modal/ContasPagar/baixaManual.html',
+                        controller: function ($scope, $uibModalInstance) {
+
+                            //$scope.objPagamento = {};
+                            //$scope.objPagamento.id = pagamentoSelected.id;
+                            //$scope.objPagamento.codigoEmpresa = pagamentoSelected.codigoEmpresa;
+                            //$scope.objPagamento.empresaId = pagamentoSelected.empresaId.toString();
+                            //$scope.objPagamento.descricao = pagamentoSelected.descricao;
+                            //$scope.objPagamento.ativo = pagamentoSelected.ativo;
+
+                            /*
+                            $scope.alterar = function () {
+                                $loading.start('load');
+
+                                FormaPagamentoService.AtualizaPagamento($scope.objPagamento).then(function (response) {
+                                    $loading.finish('load');
+
+                                    if (response.success) {
+
+                                        $uibModalInstance.dismiss('dimiss');
+                                        SweetAlert.swal({
+                                            title: "Sucesso!",
+                                            text: response.message,
+                                            type: "success"
+                                        },
+                                            function (isConfirm) {
+                                                if (isConfirm) {
+                                                    $scope.OnInit();
+                                                }
+                                            });
+                                    } else {
+                                        $uibModalInstance.dismiss('dimiss');
+                                        SweetAlert.swal({
+                                            title: "Erro!",
+                                            text: response.message,
+                                            type: "error"
+                                        });
+                                    }
+                                }, function (error) {
+
+                                });
+                            }
+                            */
+
+                            $scope.cancel = function () {
+                                $uibModalInstance.dismiss('cancel');
+                            };
+                        },
+                        windowClass: "animated fadeIn",
+                        resolve: {}
+                    });
+                    break;
+                case "Filtros":
+                    $uibModal.open({
+                        scope: $scope,
+                        backdrop: false,
+                        templateUrl: 'views/modal/ContasPagar/filtros.html',
+                        controller: function ($scope, $uibModalInstance) {
+
+                            $scope.aplicar = function () {
+
+                                //$scope.filtro.dtEmissao = $scope.filtro.dt_Emissao.toLocaleDateString();
+                                //$scope.filtro.dtLancamento = $scope.filtro.dt_Lancamento.toLocaleDateString();
+
+                                $localStorage.contasPagar = {
+                                    filtro: $scope.filtro
+                                };
+
+                                // chamar OnInit() e filtrar os dados para o grid
+
+                                console.log($localStorage);
+                            }
+
+                            $scope.limpar = function () {
+                                $scope.filtro = {};
+                                $localStorage.contasPagar = {
+                                    filtro: $scope.filtro
+                                };
+                            }
+
+                            $scope.cancel = function () {
+                                $uibModalInstance.dismiss('cancel');
+                            };
+                        },
+                        windowClass: "animated fadeIn",
+                        resolve: {}
+                    });
+                    break;
+                case "NovoCadastro":
+                    $uibModal.open({
+                        scope: $scope,
+                        backdrop: false,
+                        templateUrl: 'views/modal/ContasPagar/incluir_conta.html',
+                        controller: function ($scope, $uibModalInstance) {
+
+                            $scope.listaCentroCustos = [
+                                {
+                                    descricao: "Matriz"
+                                },
+                                {
+                                    descricao: "Filial Itaboraí"
+                                },
+                                {
+                                    descricao: "Filial São Gonçalo"
+                                }
+                            ]
+
+                            $scope.cadastrar = function () {
+                                console.log($scope.cadastro);
+                            }
+
+                            $scope.limpar = function () {
+                                $scope.cadastro = {};
+                            }
+
+                            $scope.cancel = function () {
+                                $uibModalInstance.dismiss('cancel');
+                            };
+                        },
+                        windowClass: "animated fadeIn",
+                        resolve: {}
+                    });
+                    break;
+                case "InclusaoMassa":
+                    $uibModal.open({
+                        scope: $scope,
+                        backdrop: false,
+                        templateUrl: 'views/modal/ContasPagar/incluir_massa.html',
+                        controller: function ($scope, $uibModalInstance) {
+
+                            $scope.campoDesabilitado = false;
+                            $(document).ready(function () {
+                                $('.modal-dialog').addClass('modal-cadastro-width');
+                            });
+
+                            $scope.listaCentroCustos = [
+                                {
+                                    descricao: "Matriz"
+                                },
+                                {
+                                    descricao: "Filial Itaboraí"
+                                },
+                                {
+                                    descricao: "Filial São Gonçalo"
+                                }
+                            ]
+
+                            $scope.cadastrar = function () {
+                                console.log($scope.cadastroEmMassa);
+                            }
+
+                            $scope.limpar = function () {
+                                $scope.cadastroEmMassa = {};
+                            }
+
+                            $scope.cancel = function () {
+                                $uibModalInstance.dismiss('cancel');
+                            };
+
+                            validValue = function (value) {
+                                $scope.campoDesabilitado = 
+                            }
+                        },
+                        windowClass: "animated fadeIn",
+                        resolve: {}
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
     .controller('DashboardCtrl', function ($scope, $loading, $q, SweetAlert) {
 
         $loading.start('load');
@@ -734,7 +1009,7 @@ angular.module('EP')
             .withButtons([
                 { extend: 'copy' },
                 { extend: 'csv' },
-                { extend: 'excel', title: 'Usuarios_' + Date.now },
+                { extend: 'excel', title: 'FormasPagamento_' + Date.now },
                 {
                     extend: 'print',
                     customize: function (win) {
@@ -2053,7 +2328,7 @@ angular.module('EP')
             $scope.achouCadastro = false;
             $scope.emailValido = true;
         };
-        
+
         $scope.changeSelect = function (tipo) {
             $scope.achouCadastro = false;
             $scope.emailValido = true;
@@ -2068,7 +2343,7 @@ angular.module('EP')
         };
 
         $scope.BuscarCadastro = function () {
-            
+
             $scope.emailValido = true;
             var email = $scope.user.Email;
 

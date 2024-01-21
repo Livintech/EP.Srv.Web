@@ -1,0 +1,53 @@
+﻿<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Filtros</h4>
+        <small class="font-bold">Utilize filtros para uma busca personalizada.</small>
+    </div>
+    <form role="form" name="fatorForm">
+        <div class="modal-body">
+            <div class="row mb-2">
+                <div class="col-lg-4">
+                    <label>Data emissão:</label>
+                    <input type="datetime" class="form-control form-control-modal" placeholder="Data emissão" ng-model="filtro.dtEmissao" uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar" is-open="popup1.opened" datepicker-options="dateOptions" ng-click="open1()">
+                </div>
+                <div class="col-lg-4">
+                    <label>Data lançamento:</label>
+                    <input type="datetime" class="form-control form-control-modal" placeholder="Data lançamento" ng-model="filtro.dtLancamento" uib-datepicker-popup="{{format}}" ng-readonly="true" close-text="Fechar" current-text="Hoje" clear-text="Limpar" is-open="popup2.opened" datepicker-options="dateOptions" ng-click="open2()">
+                </div>
+                <div class="col-lg-4">
+                    <label>Número do título:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="filtro.numero" placeholder="Número do título" />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-8">
+                    <label>Nome:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="filtro.nome" placeholder="Nome" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Valor:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="filtro.valor" placeholder="Valor" />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-4">
+                    <label>Categoria:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="filtro.categoria" placeholder="Categoria" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Vencimento:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="filtro.vencimento" placeholder="Vencimento" />
+                </div>
+                <div class="col-lg-4">
+                    <label>Observação:</label>
+                    <input class="form-control form-control-modal" type="text" ng-model="filtro.observacao" placeholder="Observação" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="aplicar()">Aplicar</button>
+            <button type="button" class="btn btn-primary" ng-click="limpar()">Limpar</button>
+        </div>
+    </form>
+</div>
